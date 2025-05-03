@@ -66,7 +66,8 @@ ansible all -a 'ls -l /etc/yum.repos.d/'
 
 question 4:
 
-/home/student/playbooks/roles/r---
+/home/student/playbooks/roles/requirements.yml
+---
   - src: file:///home/student/playbooks/ansible9.0/balancer.tar.gz
     name: balancer
   - src: file:///home/student/playbooks/ansible9.0/phpinfo.tar.gz
@@ -76,6 +77,70 @@ cd ..
 ansible-galaxy role install -r roles/requirements.yml -p roles
 
 ansible-galaxy role list
+
+question5: offline roles creation
+
+
+ansible-galaxy role init apache
+ansible-galaxy role list
+vim apache/tasks/main.yml
+
+---
+# tasks file for apache
+ - name: httpdinstall
+   ansible.builtin.dnf:
+    name: httpd
+    state: present
+ - name: httpdservicestart
+   ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: yes
+ - name: install firewalld
+   ansible.builtin.dnf:
+    name: firewalld
+    state: present
+ - name: firewalld service start
+   ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: yes
+ - name: https service start on firewalld
+   ansible.posix.firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+ - name: configure index file
+   ansible.builtin.template:
+    src: index.j2
+    dest: /var/www/html/index.html
+
+vim apache/templates/index.j2
+my host is {{ansible_facts['fqdn']}} on {{ansible_facts['default_ipv4']['address']}}
+
+/home/student/playbooks/apache-role.yml
+---
+- name: apache role configure play
+  hosts: dev
+  roles: 
+    - apache
+
+ansible-navigator run apache_role.yml
+
+curl servera
+
+=====
+
+
+
+
+
+
+
+
+
+
 
 
 
