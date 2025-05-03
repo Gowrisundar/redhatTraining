@@ -281,4 +281,30 @@ ansible-navigator run hwreport.yml
 
 ansible all -a 'cat /root/hwreport.txt'
 
+question: 11
+
+Issue.yml
+---
+- name: issue file configuration play
+  hosts: all
+  tasks:
+    - name: on dev host
+      ansible.builtin.copy:
+        content: Development
+        dest: /etc/issue
+      when: inventory_hostname in groups['dev']
+    - name: on test host                          
+      ansible.builtin.copy:                      
+        content: Balancer                     
+        dest: /etc/issue                         
+      when: inventory_hostname in groups['balancers']
+    - name: on prod host                          
+      ansible.builtin.copy:                      
+        content: Production                     
+        dest: /etc/issue                         
+      when: inventory_hostname in groups['prod']
+
+ansible-navigator run issue.yml
+
+ansible all -a 'cat /etc/issue'
 
