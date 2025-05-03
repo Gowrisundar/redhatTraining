@@ -133,11 +133,46 @@ curl servera
 =====
 
 
+question 6:
 
+roles.yml (configure php roles first)
 
+---
+- name: php info role configure play
+  hosts: webservers
+  roles:
+    - phpinfo
+- name: blanacer role configure plau
+  hosts: balancers
+  roles:
+    - balancer
 
+ansible-navigator run roles.yml
 
+curl serverb -- load balancer
 
+=================
+
+question 7:
+dnf install rhel-system-roles-1.16.2-1.el9_0.noarch -y
+
+cp -rv /usr/share/ansible/roles/rhel-system-roles.timesync roles/
+
+timesync.yml --- under playbooks
+
+---
+- name: ntp role configuration play
+  hosts: all
+  vars: 
+    timesync_ntp_servers: 
+     -  hostname: classroom.example.com
+        iburst: yes
+  roles:
+    - rhel-system-roles.timesync
+
+ansible-navigator run timesync.yml
+
+tree roles -> to view roles
 
 
 
