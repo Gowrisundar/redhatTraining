@@ -424,6 +424,22 @@ ansible dev -a 'tail /etc/passwd'
 ansible dev -a 'tail /etc/group'
 ansible balancer -a 'tail /etc/passwd'
 
+question: 15
 
+solaris.yml
+hellow welcome to ansible
+
+command
+[student@workstation playbooks]$ vim solaris.yml
+[student@workstation playbooks]$ ansible-vault encrypt solaris.yml
+New Vault password: 
+Confirm New Vault password: 
+Encryption successful
+[student@workstation playbooks]$ ansible-vault rekey solaris.yml
+Vault password: 
+New Vault password: 
+Confirm New Vault password: 
+Rekey successful
+[student@workstation playbooks]$ ansible-vault rekey solaris.yml
 
 
