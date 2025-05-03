@@ -277,4 +277,8 @@ Question: 10
         VDB_DISK_SIZE= "{{VDB_DISK_SIZE|default(NONE)}}"
       dest: /root/hwreport.txt
 
+ansible-navigator run hwreport.yml
+
+ansible all -a 'cat /root/hwreport.txt'
+
 
