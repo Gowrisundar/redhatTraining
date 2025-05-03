@@ -209,6 +209,41 @@ packages.yml
 ansible-navigator run packages.yml
 
 
+=======================
+
+question: 9
+
+webcontent.yml
+---
+- name: webdev directory creation and configuration
+  hosts: dev
+  tasks: 
+  - name: webdev directory creation
+    ansible.builtin.file:
+      path: /webdev
+      group: devops
+      mode: u=rxx,g=rxx,o=rx,g=g+s
+      setype: httpd_sys_content_t
+      recurse: yes
+      state: directory
+      force: yes
+  - name: index file creation
+    ansible.builtin.file:
+      path: /webdev/index.html
+      state: touch
+  - name: index file configure
+    ansible.builtin.copy:
+      content: "Development"
+      dest: /webdev/index.html
+  - name: create a link
+    ansible.builtin.file:
+      src: /webdev/index.html
+      dest: /var/www/html/webdev
+      state: link
+
+ansible-navigatory run webcontent.yml
+
+curl servera/webcontent
 
 
 
