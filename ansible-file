@@ -64,6 +64,21 @@ ansible all -a 'cat /etc/yum.repos.d/baseos.repo'
 ansible all -a 'ls -l /etc/yum.repos.d/'
 
 
+question 4:
+
+/home/student/playbooks/roles/r---
+  - src: file:///home/student/playbooks/ansible9.0/balancer.tar.gz
+    name: balancer
+  - src: file:///home/student/playbooks/ansible9.0/phpinfo.tar.gz
+    name: phpinfo
+cd ..
+
+ansible-galaxy role install -r roles/requirements.yml -p roles
+
+ansible-galaxy role list
+
+
+
 
 
 
