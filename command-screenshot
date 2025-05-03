@@ -2530,4 +2530,558 @@ Development[student@workstation playbooks]$ cat webcontent.yml
       src: /webdev/index.html
       dest: /var/www/html/webdev
       state: link
-[student@workstation playbooks]$
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/home/student/playbooks/hwreport.yml': line 2, column 46, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+- name: hw report generate reprot on all host:
+                                             ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+ERROR! conflicting action statements: ansible.builtin.get_url, uri
+
+The error appears to be in '/home/student/playbooks/hwreport.yml': line 5, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  tasks:
+  - name: download file from the url
+    ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+ERROR! conflicting action statements: ansible.builtin.get_url, url
+
+The error appears to be in '/home/student/playbooks/hwreport.yml': line 5, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  tasks:
+  - name: download file from the url
+    ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+changed: [serverc.lab.example.com]
+changed: [serverb.lab.example.com]
+changed: [serverd.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261081.129446-81-80978286221254/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261081.129446-81-80978286221254/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261081.129446-81-80978286221254/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_3t5_omdm/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_3t5_omdm/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+
+TASK [gathering report on all hosts] ***************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_mem_total_md' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_mem_total_md' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_mem_total_md' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261129.6763184-81-152642012346321/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261129.6763184-81-152642012346321/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261129.6763184-81-152642012346321/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_r121svxe/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_r121svxe/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+
+TASK [gathering report on all hosts] ***************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_mem_total_mb' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_mem_total_mb' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_mem_total_mb' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ ansible dev -m setup| grep ansible_mem
+        "ansible_memfree_mb": 186,
+        "ansible_memory_mb": {
+        "ansible_memtotal_mb": 960,
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible dev -m setup| grep ansible_mem
+        "ansible_memfree_mb": 186,
+        "ansible_memory_mb": {
+        "ansible_memtotal_mb": 960,
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+ok: [serverb.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261278.5620694-81-134853077839551/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261278.5620694-81-134853077839551/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261278.5620694-81-134853077839551/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_tcwpbqx5/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_tcwpbqx5/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [gathering report on all hosts] ***************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_cpu_machine' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_cpu_machine' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'ansible_cpu_machine' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ ansible dev -m setup| grep ansible_cpu
+[student@workstation playbooks]$ ansible dev -m setup| grep cpu
+        "ansible_processor_vcpus": 1,
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible dev -m setup| grep cpu
+        "ansible_processor_vcpus": 1,
+[student@workstation playbooks]$ ansible dev -m setup| grep cpu
+        "ansible_processor_vcpus": 1,
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261357.4528317-81-56159350766191/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261357.4528317-81-56159350766191/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261357.4528317-81-56159350766191/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_a8g60y_1/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_a8g60y_1/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+
+TASK [gathering report on all hosts] ***************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'nsible_processor_vcpus' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'nsible_processor_vcpus' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'nsible_processor_vcpus' is undefined\n\nThe error appears to be in '/home/student/playbooks/hwreport.yml': line 9, column 5, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      dest: /root/hwreport.txt\n  - name: gathering report on all hosts\n    ^ here\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261382.4272912-81-148162204166740/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261382.4272912-81-148162204166740/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261382.4272912-81-148162204166740/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_zcpjddk1/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_zcpjddk1/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [gathering report on all hosts] ***************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [copying content] *****************************************************************************************
+changed: [serverc.lab.example.com]
+changed: [serverd.lab.example.com]
+changed: [serverb.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ ansible all -a 'cat /root/hwreport.txt'
+serverc.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME: "serverc"
+BIOS: "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY: "960"
+CPU: "1"
+VDA_DISK_SIZE: "10.00 GB"
+VDB_DISK_SIZE: "1.00 GB"
+serverd.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME: "serverd"
+BIOS: "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY: "960"
+CPU: "1"
+VDA_DISK_SIZE: "10.00 GB"
+VDB_DISK_SIZE: "1.00 GB"
+servera.lab.example.com | FAILED | rc=1 >>
+cat: /root/hwreport.txt: No such file or directorynon-zero return code
+serverb.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME: "serverb"
+BIOS: "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY: "960"
+CPU: "1"
+VDA_DISK_SIZE: "10.00 GB"
+VDB_DISK_SIZE: "1.00 GB"
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible all -a 'cat /root/hwreport.txt'
+serverb.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME: "serverb"
+BIOS: "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY: "960"
+CPU: "1"
+VDA_DISK_SIZE: "10.00 GB"
+VDB_DISK_SIZE: "1.00 GB"
+serverc.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME: "serverc"
+BIOS: "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY: "960"
+CPU: "1"
+VDA_DISK_SIZE: "10.00 GB"
+VDB_DISK_SIZE: "1.00 GB"
+serverd.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME: "serverd"
+BIOS: "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY: "960"
+CPU: "1"
+VDA_DISK_SIZE: "10.00 GB"
+VDB_DISK_SIZE: "1.00 GB"
+servera.lab.example.com | FAILED | rc=1 >>
+cat: /root/hwreport.txt: No such file or directorynon-zero return code
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261497.0482543-81-217918439569862/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261497.0482543-81-217918439569862/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261497.0482543-81-217918439569862/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_070wgy07/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_070wgy07/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [gathering report on all hosts] ***************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [copying content] *****************************************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverb.lab.example.com]
+changed: [serverc.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ ansible all -a 'cat /root/hwreport.txt'
+serverd.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverd"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+serverb.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverb"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+serverc.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverc"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+servera.lab.example.com | FAILED | rc=1 >>
+cat: /root/hwreport.txt: No such file or directorynon-zero return code
+[student@workstation playbooks]$ cat hwreport.yml 
+---
+- name: hw report generate reprot on all host
+  hosts: all
+  tasks:
+  - name: download file from the url
+    ansible.builtin.get_url:
+      url: http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+      dest: /root/hwreport.txt
+  - name: gathering report on all hosts
+    ansible.builtin.set_fact:
+      HOSTNAME: "{{ansible_facts['hostname']}}"
+      BIOS: "{{ansible_bios_version}}"
+      MEMORY: "{{ansible_memtotal_mb}}"
+      CPU: "{{ansible_processor_vcpus}}"
+      VDA_DISK_SIZE: "{{ansible_facts['devices']['vda']['size']}}"
+      VDB_DISK_SIZE: "{{ansible_facts['devices']['vdb']['size']}}"
+  - name: copying content
+    ansible.builtin.copy:
+      content: |
+        HOSTNAME= "{{HOSTNAME}}"
+        BIOS= "{{BIOS}}"
+        MEMORY= "{{MEMORY}}"
+        CPU= "{{CPU}}"
+        VDA_DISK_SIZE= "{{VDA_DISK_SIZE}}"
+        VDB_DISK_SIZE= "{{VDB_DISK_SIZE}}"
+      dest: /root/hwreport.txt
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261669.6188223-81-88020773679315/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261669.6188223-81-88020773679315/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261669.6188223-81-88020773679315/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_euppt3mm/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_euppt3mm/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+
+TASK [gathering report on all hosts] ***************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [copying content] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ ansible all -a 'cat /root/hwreport.txt'
+serverc.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverc"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+servera.lab.example.com | FAILED | rc=1 >>
+cat: /root/hwreport.txt: No such file or directorynon-zero return code
+serverd.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverd"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+serverb.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverb"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+ok: [serverc.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261770.7183256-81-187587210293328/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261770.7183256-81-187587210293328/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261770.7183256-81-187587210293328/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_mzfjietr/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_mzfjietr/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+ok: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [gathering report on all hosts] ***************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [copying content] *****************************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "template error while templating string: No filter named 'defailt'.. String: HOSTNAME= \"{{HOSTNAME|default(NONE)}}\"\nBIOS= \"{{BIOS|defailt(NONE)}}\"\nMEMORY= \"{{MEMORY|default(NONE)}}\"\nCPU= \"{{CPU|default(NONE)}}\"\nVDA_DISK_SIZE= \"{{VDA_DISK_SIZE|default(NONE)}}\"\nVDB_DISK_SIZE= \"{{VDB_DISK_SIZE|default(NONE)}}\"\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "template error while templating string: No filter named 'defailt'.. String: HOSTNAME= \"{{HOSTNAME|default(NONE)}}\"\nBIOS= \"{{BIOS|defailt(NONE)}}\"\nMEMORY= \"{{MEMORY|default(NONE)}}\"\nCPU= \"{{CPU|default(NONE)}}\"\nVDA_DISK_SIZE= \"{{VDA_DISK_SIZE|default(NONE)}}\"\nVDB_DISK_SIZE= \"{{VDB_DISK_SIZE|default(NONE)}}\"\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "template error while templating string: No filter named 'defailt'.. String: HOSTNAME= \"{{HOSTNAME|default(NONE)}}\"\nBIOS= \"{{BIOS|defailt(NONE)}}\"\nMEMORY= \"{{MEMORY|default(NONE)}}\"\nCPU= \"{{CPU|default(NONE)}}\"\nVDA_DISK_SIZE= \"{{VDA_DISK_SIZE|default(NONE)}}\"\nVDB_DISK_SIZE= \"{{VDB_DISK_SIZE|default(NONE)}}\"\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim hwreport.yml
+[student@workstation playbooks]$ ansible-navigator run hwreport.yml 
+
+PLAY [hw report generate reprot on all host] *******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [download file from the url] ******************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: AttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "module_stderr": "Shared connection to servera.lab.example.com closed.\r\n", "module_stdout": "Traceback (most recent call last):\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261803.3781435-81-173754484626378/AnsiballZ_get_url.py\", line 107, in <module>\r\n    _ansiballz_main()\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261803.3781435-81-173754484626378/AnsiballZ_get_url.py\", line 99, in _ansiballz_main\r\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\r\n  File \"/home/devops/.ansible/tmp/ansible-tmp-1746261803.3781435-81-173754484626378/AnsiballZ_get_url.py\", line 47, in invoke_module\r\n    runpy.run_module(mod_name='ansible.modules.get_url', init_globals=dict(_module_fqn='ansible.modules.get_url', _modlib_path=modlib_path),\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 210, in run_module\r\n    return _run_module_code(code, init_globals, run_name, mod_spec)\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 97, in _run_module_code\r\n    _run_code(code, mod_globals, init_globals,\r\n  File \"/usr/lib64/python3.9/runpy.py\", line 87, in _run_code\r\n    exec(code, run_globals)\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_yh3nzzb7/ansible_ansible.builtin.get_url_payload.zip/ansible/modules/get_url.py\", line 363, in <module>\r\n  File \"<frozen importlib._bootstrap>\", line 1007, in _find_and_load\r\n  File \"<frozen importlib._bootstrap>\", line 986, in _find_and_load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 664, in _load_unlocked\r\n  File \"<frozen importlib._bootstrap>\", line 627, in _load_backward_compatible\r\n  File \"<frozen zipimport>\", line 259, in load_module\r\n  File \"/tmp/ansible_ansible.builtin.get_url_payload_yh3nzzb7/ansible_ansible.builtin.get_url_payload.zip/ansible/module_utils/urls.py\", line 116, in <module>\r\n  File \"/usr/lib/python3.9/site-packages/urllib3/contrib/pyopenssl.py\", line 50, in <module>\r\n    import OpenSSL.SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/__init__.py\", line 8, in <module>\r\n    from OpenSSL import crypto, SSL\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1517, in <module>\r\n    class X509StoreFlags(object):\r\n  File \"/usr/lib/python3.9/site-packages/OpenSSL/crypto.py\", line 1537, in X509StoreFlags\r\n    CB_ISSUER_CHECK = _lib.X509_V_FLAG_CB_ISSUER_CHECK\r\nAttributeError: module 'lib' has no attribute 'X509_V_FLAG_CB_ISSUER_CHECK'\r\n", "msg": "MODULE FAILURE\nSee stdout/stderr for the exact error", "rc": 1}
+
+TASK [gathering report on all hosts] ***************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [copying content] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ ansible all -a 'cat /root/hwreport.txt'
+serverd.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverd"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+servera.lab.example.com | FAILED | rc=1 >>
+cat: /root/hwreport.txt: No such file or directorynon-zero return code
+serverc.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverc"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+serverb.lab.example.com | CHANGED | rc=0 >>
+HOSTNAME= "serverb"
+BIOS= "1.14.0-1.module+el8.4.0+8855+a9e237a9"
+MEMORY= "960"
+CPU= "1"
+VDA_DISK_SIZE= "10.00 GB"
+VDB_DISK_SIZE= "1.00 GB"
+[student@workstation playbooks]$ cat hwreport.yml
+---
+- name: hw report generate reprot on all host
+  hosts: all
+  tasks:
+  - name: download file from the url
+    ansible.builtin.get_url:
+      url: http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+      dest: /root/hwreport.txt
+  - name: gathering report on all hosts
+    ansible.builtin.set_fact:
+      HOSTNAME: "{{ansible_facts['hostname']}}"
+      BIOS: "{{ansible_bios_version}}"
+      MEMORY: "{{ansible_memtotal_mb}}"
+      CPU: "{{ansible_processor_vcpus}}"
+      VDA_DISK_SIZE: "{{ansible_facts['devices']['vda']['size']}}"
+      VDB_DISK_SIZE: "{{ansible_facts['devices']['vdb']['size']}}"
+  - name: copying content
+    ansible.builtin.copy:
+      content: |
+        HOSTNAME= "{{HOSTNAME|default(NONE)}}"
+        BIOS= "{{BIOS|default(NONE)}}"
+        MEMORY= "{{MEMORY|default(NONE)}}"
+        CPU= "{{CPU|default(NONE)}}"
+        VDA_DISK_SIZE= "{{VDA_DISK_SIZE|default(NONE)}}"
+        VDB_DISK_SIZE= "{{VDB_DISK_SIZE|default(NONE)}}"
+      dest: /root/hwreport.txt
+[student@workstation playbooks]$ cat webcontent.yml
+---
+- name: webdev directory creation and configuration
+  hosts: dev
+  tasks: 
+  - name: webdev directory creation
+    ansible.builtin.file:
+      path: /webdev
+      group: devops
+      mode: u=rxx,g=rxx,o=rx,g=g+s
+      setype: httpd_sys_content_t
+      recurse: yes
+      state: directory
+      force: yes
+  - name: index file creation
+    ansible.builtin.file:
+      path: /webdev/index.html
+      state: touch
+  - name: index file configure
+    ansible.builtin.copy:
+      content: "Development"
+      dest: /webdev/index.html
+  - name: create a link
+    ansible.builtin.file:
+      src: /webdev/index.html
+      dest: /var/www/html/webdev
+      state: link
+[student@workstation playbooks]$ 
