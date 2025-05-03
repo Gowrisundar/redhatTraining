@@ -176,7 +176,37 @@ tree roles -> to view roles
 
 
 
+question: 8:
 
+packages.yml
+
+
+---    
+- name: php and mariadb install in devb and test
+  hosts: dev,balancer
+  tasks:
+  - name: php mariadb install
+    ansible.builtin.dnf:
+      name:
+        - php
+        - mariadb
+      state: present
+- name: development tool install in prod group
+  hosts: prod
+  tasks:
+  - name: install development tools
+    ansible.builtin.dnf:
+      name: '@RPM Development Tools'
+      state: present
+- name: update all packages in dev group
+  hosts: dev
+  tasks:
+  - name: update all packages
+    ansible.builtin.dnf:
+      name: '*'
+      state: latest
+
+ansible-navigator run packages.yml
 
 
 
