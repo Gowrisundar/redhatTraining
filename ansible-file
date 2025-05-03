@@ -339,4 +339,17 @@ ansible dev -a 'cat /etc/hosts'
 question 13:
 
 
+vault.yml
+---
+pw_manager: lammgr
+pw_developer: lamdev
+
+
+secret.txt
+
+P@sswOrd
+ansible-vault encrypt vault.yml --vault-password-file=secret.txt
+Encryption successful
+[student@workstation playbooks]$ ansible-vault view  vault.yml --vault-password-file=secret.txt
+
 
