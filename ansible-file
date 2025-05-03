@@ -352,4 +352,78 @@ ansible-vault encrypt vault.yml --vault-password-file=secret.txt
 Encryption successful
 [student@workstation playbooks]$ ansible-vault view  vault.yml --vault-password-file=secret.txt
 
+Question 14:
+
+wget user_list.yml (wget http://xxxxxxx)
+
+users.yml
+---
+- name: user creation play
+  hosts: all
+  vars_files:
+    - vault.yml
+    - user_list.yml
+  tasks: 
+    - name: develops name creation
+      ansible.builtin.group:
+        name: devops
+        state: present
+      when: inventory_hostname in groups['dev'] or inventory_hostname in groups['balancers']
+    - name: user creation
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        groups: devops
+        uid: "{{item.id}}"
+        password: "{{pw_developer|password_hash('sha512')}}"
+      when: item.job=='developer' and (inventory_hostname in groups['dev'] or inventory_hostname in groups['balancers'])
+      loop: "{{users}}"
+    - name: manager name creation
+      ansible.builtin.group:
+        name: manager
+        state: present
+      when: inventory_hostname in groups['balancers']
+    - name: user creation
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        groups: manager
+        uid: "{{item.id}}"
+        password: "{{pw_manager|password_hash('sha512')}}"
+      when: item.job=='manager' and inventory_hostname in groups['balancers']
+      loop: "{{users}}"
+
+user_list.yml
+---
+users:
+  - name: user1
+    job: developer
+    id: 1020
+  - name: user2
+    job : manager
+    id: 1021
+  - name: user3
+    job: developer
+    id: 1022
+  - name: user4   
+    job: developer
+    id: 1023
+  - name: user5   
+    job : manager 
+    id: 1024
+  - name: user6   
+    job: manager
+    id: 1025
+
+user vault.yml for password
+
+commands:
+
+ansible-navigator run users.yml --vault-password-file secret.txt
+
+ansible dev -a 'tail /etc/shadow'
+ansible dev -a 'tail /etc/passwd'
+ansible dev -a 'tail /etc/group'
+ansible balancer -a 'tail /etc/passwd'
+
+
+
 
