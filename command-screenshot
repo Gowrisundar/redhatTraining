@@ -1,0 +1,2533 @@
+[student@workstation ~]$ pwd
+/home/student
+[student@workstation ~]$ vim .vimrc
+[student@workstation ~]$ mkdir playbooks
+[student@workstation ~]$ pwd
+/home/student
+[student@workstation ~]$ cd playbooks
+[student@workstation playbooks]$ pwd
+/home/student/playbooks
+[student@workstation playbooks]$ vim inventory
+[student@workstation playbooks]$ vim ansible.cfg
+[student@workstation playbooks]$ mkdir roles
+[student@workstation playbooks]$ vim ansible.cfg
+[student@workstation playbooks]$ cd roles
+[student@workstation roles]$ ls
+[student@workstation roles]$ cd ..
+[student@workstation playbooks]$ ls
+ansible.cfg  inventory  roles
+[student@workstation playbooks]$ vim ansible.cfg
+[student@workstation playbooks]$ su - root
+Password: 
+su: Authentication failure
+[student@workstation playbooks]$ su - root
+Password: 
+Last failed login: Sat May  3 00:56:34 EDT 2025 on pts/0
+There was 1 failed login attempt since the last successful login.
+[root@workstation ~]# dnf install ansible -i
+usage: dnf install [-c [config file]] [-q] [-v] [--version] [--installroot [path]] [--nodocs] [--noplugins]
+                   [--enableplugin [plugin]] [--disableplugin [plugin]] [--releasever RELEASEVER]
+                   [--setopt SETOPTS] [--skip-broken] [-h] [--allowerasing] [-b | --nobest] [-C]
+                   [-R [minutes]] [-d [debug level]] [--debugsolver] [--showduplicates] [-e ERRORLEVEL]
+                   [--obsoletes] [--rpmverbosity [debug level name]] [-y] [--assumeno] [--enablerepo [repo]]
+                   [--disablerepo [repo] | --repo [repo]] [--enable | --disable] [-x [package]]
+                   [--disableexcludes [repo]] [--repofrompath [repo,path]] [--noautoremove] [--nogpgcheck]
+                   [--color COLOR] [--refresh] [-4] [-6] [--destdir DESTDIR] [--downloadonly]
+                   [--comment COMMENT] [--bugfix] [--enhancement] [--newpackage] [--security]
+                   [--advisory ADVISORY] [--bz BUGZILLA] [--cve CVES]
+                   [--sec-severity {Critical,Important,Moderate,Low}] [--forcearch ARCH]
+                   PACKAGE [PACKAGE ...]
+dnf install: error: unrecognized arguments: -i
+[root@workstation ~]# dnf install ansible -i
+usage: dnf install [-c [config file]] [-q] [-v] [--version] [--installroot [path]] [--nodocs] [--noplugins]
+                   [--enableplugin [plugin]] [--disableplugin [plugin]] [--releasever RELEASEVER]
+                   [--setopt SETOPTS] [--skip-broken] [-h] [--allowerasing] [-b | --nobest] [-C]
+                   [-R [minutes]] [-d [debug level]] [--debugsolver] [--showduplicates] [-e ERRORLEVEL]
+                   [--obsoletes] [--rpmverbosity [debug level name]] [-y] [--assumeno] [--enablerepo [repo]]
+                   [--disablerepo [repo] | --repo [repo]] [--enable | --disable] [-x [package]]
+                   [--disableexcludes [repo]] [--repofrompath [repo,path]] [--noautoremove] [--nogpgcheck]
+                   [--color COLOR] [--refresh] [-4] [-6] [--destdir DESTDIR] [--downloadonly]
+                   [--comment COMMENT] [--bugfix] [--enhancement] [--newpackage] [--security]
+                   [--advisory ADVISORY] [--bz BUGZILLA] [--cve CVES]
+                   [--sec-severity {Critical,Important,Moderate,Low}] [--forcearch ARCH]
+                   PACKAGE [PACKAGE ...]
+dnf install: error: unrecognized arguments: -i
+[root@workstation ~]# dnf install ansible -y
+Last metadata expiration check: 0:14:20 ago on Sat 03 May 2025 12:43:40 AM EDT.
+Package ansible-core-2.13.0-2.el9ap.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@workstation ~]# dnf install ansible-navigator -y
+Last metadata expiration check: 0:14:34 ago on Sat 03 May 2025 12:43:40 AM EDT.
+Package ansible-navigator-2.1.0-1.el9ap.noarch is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+[root@workstation ~]# dnf install ansible-playbook -y
+Last metadata expiration check: 0:14:46 ago on Sat 03 May 2025 12:43:40 AM EDT.
+No match for argument: ansible-playbook
+Error: Unable to find a match: ansible-playbook
+[root@workstation ~]# dnf install ansible-playbooks -y
+Last metadata expiration check: 0:14:52 ago on Sat 03 May 2025 12:43:40 AM EDT.
+No match for argument: ansible-playbooks
+Error: Unable to find a match: ansible-playbooks
+[root@workstation ~]# dnf install ansible-playbook -y
+Last metadata expiration check: 0:15:04 ago on Sat 03 May 2025 12:43:40 AM EDT.
+No match for argument: ansible-playbook
+Error: Unable to find a match: ansible-playbook
+[root@workstation ~]# ansible-playbook -version
+usage: ansible-playbook [-h] [--version] [-v] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+                        [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+                        [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+                        [--ssh-extra-args SSH_EXTRA_ARGS]
+                        [-k | --connection-password-file CONNECTION_PASSWORD_FILE] [--force-handlers]
+                        [--flush-cache] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+                        [-K | --become-password-file BECOME_PASSWORD_FILE] [-t TAGS] [--skip-tags SKIP_TAGS]
+                        [-C] [--syntax-check] [-D] [-i INVENTORY] [--list-hosts] [-l SUBSET] [-e EXTRA_VARS]
+                        [--vault-id VAULT_IDS]
+                        [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+                        [-M MODULE_PATH] [--list-tasks] [--list-tags] [--step] [--start-at-task START_AT_TASK]
+                        playbook [playbook ...]
+ansible-playbook: error: the following arguments are required: playbook
+ 
+usage: ansible-playbook [-h] [--version] [-v] [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+                        [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+                        [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+                        [--ssh-extra-args SSH_EXTRA_ARGS]
+                        [-k | --connection-password-file CONNECTION_PASSWORD_FILE] [--force-handlers]
+                        [--flush-cache] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+                        [-K | --become-password-file BECOME_PASSWORD_FILE] [-t TAGS] [--skip-tags SKIP_TAGS]
+                        [-C] [--syntax-check] [-D] [-i INVENTORY] [--list-hosts] [-l SUBSET] [-e EXTRA_VARS]
+                        [--vault-id VAULT_IDS]
+                        [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS]
+                        [-M MODULE_PATH] [--list-tasks] [--list-tags] [--step] [--start-at-task START_AT_TASK]
+                        playbook [playbook ...]
+
+Runs Ansible playbooks, executing the defined tasks on the targeted hosts.
+
+positional arguments:
+  playbook              Playbook(s)
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --flush-cache         clear the fact cache for every host in inventory
+  --force-handlers      run handlers even if a task fails
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --list-tags           list all available tags
+  --list-tasks          list all tasks that would be executed
+  --skip-tags SKIP_TAGS
+                        only run plays and tasks whose tags do not match these values
+  --start-at-task START_AT_TASK
+                        start the playbook at the task matching this name
+  --step                one-step-at-a-time: confirm each task before running
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -t TAGS, --tags TAGS  only run plays and tasks tagged with these values
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+[root@workstation ~]# ansible playbook -v
+Using /etc/ansible/ansible.cfg as config file
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not
+match 'all'
+[WARNING]: Could not match supplied host pattern, ignoring: playbook
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory.
+                        This sets the relative path for many features including roles/ group_vars/ etc.
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+ERROR! No argument passed to command module
+[root@workstation ~]# ansible playbook --version
+ansible [core 2.13.0]
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3.9/site-packages/ansible
+  ansible collection location = /root/.ansible/collections:/usr/share/ansible/collections
+  executable location = /bin/ansible
+  python version = 3.9.10 (main, Feb  9 2022, 00:00:00) [GCC 11.2.1 20220127 (Red Hat 11.2.1-9)]
+  jinja version = 3.0.3
+  libyaml = True
+[root@workstation ~]# exit
+logout
+[student@workstation playbooks]$ vim ansible-navigator.yml
+[student@workstation playbooks]$ ansible all -a 'i'
+[WARNING]:  * Failed to parse /home/student/playbooks/inventory with yaml plugin: We were unable to read either
+as JSON nor YAML, these are the errors we got from each: JSON: Expecting value: line 1 column 2 (char 1)
+Syntax Error while loading YAML.   did not find expected <document start>  The error appears to be in
+'/home/student/playbooks/inventory': line 2, column 1, but may be elsewhere in the file depending on the exact
+syntax problem.  The offending line appears to be:  [dev] servera.lab.example ^ here
+[WARNING]:  * Failed to parse /home/student/playbooks/inventory with ini plugin:
+/home/student/playbooks/inventory:11: Section [webservers:child] has unknown type: child
+[WARNING]: Unable to parse /home/student/playbooks/inventory as an inventory source
+[WARNING]: No inventory was parsed, only implicit localhost is available
+[WARNING]: provided hosts list is empty, only localhost is available. Note that the implicit localhost does not
+match 'all'
+[student@workstation playbooks]$ cat inventory
+[dev]
+servera.lab.example
+
+[balancers]
+serverb.lab.example
+
+[prod]
+serverc.lab.example
+serverd.lab.example
+
+[webservers:child]
+prod
+
+[student@workstation playbooks]$ vim inventory
+[student@workstation playbooks]$ ansible all -a 'i'
+serverc.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverc.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverd.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverd.lab.example: Name or service not known",
+    "unreachable": true
+}
+servera.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname servera.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverb.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverb.lab.example: Name or service not known",
+    "unreachable": true
+}
+[student@workstation playbooks]$ ansible all -a 'id'
+servera.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname servera.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverb.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverb.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverc.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverc.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverd.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverd.lab.example: Name or service not known",
+    "unreachable": true
+}
+[student@workstation playbooks]$ cat ansible.cfg
+[defaults]
+inventory=/home/student/playbooks/inventory
+remote_user=devops
+ask_pass=false
+roles_path=/home/student/playbooks/inventory/roles
+[privilage_escalation]
+become=false
+become_user=root
+become_method=sudo
+become_ask_pass=false
+[student@workstation playbooks]$ vim imventory
+[student@workstation playbooks]$ ls
+ansible.cfg  ansible-navigator.yml  imventory  inventory  roles
+[student@workstation playbooks]$ cat inventory
+[dev]
+servera.lab.example
+
+[balancers]
+serverb.lab.example
+
+[prod]
+serverc.lab.example
+serverd.lab.example
+
+[webservers:children]
+prod
+
+[student@workstation playbooks]$ vim inventory
+[student@workstation playbooks]$ rm imventory
+[student@workstation playbooks]$ ls
+ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ vim ansible.cfg
+[student@workstation playbooks]$ ansible all -a 'id'
+servera.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname servera.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverb.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverb.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverd.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverd.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverc.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverc.lab.example: Name or service not known",
+    "unreachable": true
+}
+[student@workstation playbooks]$ vim ansible.cfg
+[student@workstation playbooks]$ ansible all -a 'id'
+servera.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname servera.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverb.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverb.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverc.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverc.lab.example: Name or service not known",
+    "unreachable": true
+}
+serverd.lab.example | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: ssh: Could not resolve hostname serverd.lab.example: Name or service not known",
+    "unreachable": true
+}
+[student@workstation playbooks]$ vim ansible.cfg
+[student@workstation playbooks]$ ll
+total 12
+-rw-rw-r--. 1 student student 223 May  3 01:09 ansible.cfg
+-rw-rw-r--. 1 student student 212 May  3 01:03 ansible-navigator.yml
+-rw-rw-r--. 1 student student 136 May  3 01:07 inventory
+drwxrwxr-x. 2 student student   6 May  3 00:52 roles
+[student@workstation playbooks]$ cat inventory
+[dev]
+servera.lab.example
+
+[balancers]
+serverb.lab.example
+
+[prod]
+serverc.lab.example
+serverd.lab.example
+
+[webservers:children]
+prod
+
+[student@workstation playbooks]$ vim inventory
+[student@workstation playbooks]$ ansible all -a 'id'
+servera.lab.example.com | CHANGED | rc=0 >>
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+serverd.lab.example.com | CHANGED | rc=0 >>
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+serverc.lab.example.com | CHANGED | rc=0 >>
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+serverb.lab.example.com | CHANGED | rc=0 >>
+uid=0(root) gid=0(root) groups=0(root) context=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+[student@workstation playbooks]$ cat inventory
+[dev]
+servera.lab.example.com
+
+[balancers]
+serverb.lab.example.com
+
+[prod]
+serverc.lab.example.com
+serverd.lab.example.com
+
+[webservers:children]
+prod
+
+[student@workstation playbooks]$ cat ansible.cfg
+[defaults]
+inventory=/home/student/playbooks/inventory
+remote_user=devops
+ask_pass=false
+roles_path=/home/student/playbooks/roles
+[privilege_escalation]
+become=true
+become_user=root
+become_method=sudo
+become_ask_pass=false
+[student@workstation playbooks]$ cat inventory
+[dev]
+servera.lab.example.com
+
+[balancers]
+serverb.lab.example.com
+
+[prod]
+serverc.lab.example.com
+serverd.lab.example.com
+
+[webservers:children]
+prod
+
+[student@workstation playbooks]$ cat ansible-navigator.yml
+---
+  ansible-navigatory:
+    execution-environment:
+      image: utility.lab.example.com/ee-supported/li:latest
+      pull:
+        policy: missing
+    playbook-artifact:
+        enable: false
+    mode: stdout
+
+[student@workstation playbooks]$ vim adhoc.sh
+[student@workstation playbooks]$ chmod a+x adhoc.sh
+[student@workstation playbooks]$ ./adhoc.sh
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: the following arguments are required: pattern
+ 
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory.
+                        This sets the relative path for many features including roles/ group_vars/ etc.
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=devops)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: the following arguments are required: pattern
+ 
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory.
+                        This sets the relative path for many features including roles/ group_vars/ etc.
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=devops)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+[student@workstation playbooks]$ ls
+adhoc.sh  ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ ./adhoc.sh
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: the following arguments are required: pattern
+ 
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory.
+                        This sets the relative path for many features including roles/ group_vars/ etc.
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=devops)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: the following arguments are required: pattern
+ 
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory.
+                        This sets the relative path for many features including roles/ group_vars/ etc.
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=devops)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+[student@workstation playbooks]$ ls
+adhoc.sh  ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ ls
+adhoc.sh  ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ cat adhoc.sh
+#!/bin/bash
+ansible -all -m yum_repository -a 'name=baseos description="baseos description" baseurl=http://content.example.com/rhel9.0/x86_64/dvd/BaseOS/ enabled=yes gpgcheck=yes gpgkey=http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release'
+
+ansible -all -m yum_repository -a 'name=appstream description="app description" baseurl=http://content.example.com/rhel9.0/x86_64/dvd/AppStream/ enabled=yes gpgcheck=yes pgkey=http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release'
+[student@workstation playbooks]$ vim adhoc.sh
+[student@workstation playbooks]$ ./adhoc.sh
+servera.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "baseos",
+    "state": "present"
+}
+serverd.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "baseos",
+    "state": "present"
+}
+serverc.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "baseos",
+    "state": "present"
+}
+serverb.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "baseos",
+    "state": "present"
+}
+servera.lab.example.com | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "msg": "Unsupported parameters for (yum_repository) module: pgkey. Supported parameters include: ip_resolve, sslclientcert (client_cert), enabled, file, metadata_expire, gpgkey, sslverify (validate_certs), retries, sslclientkey (client_key), metalink, params, async, exclude, priority, proxy_password, keepalive, mirrorlist, proxy, selevel, description, protect, reposdir, mirrorlist_expire, serole, skip_if_unavailable, state, ssl_check_cert_permissions, baseurl, include, throttle, http_caching, seuser, gpgcheck, attributes (attr), deltarpm_metadata_percentage, password, cost, bandwidth, group, s3_enabled, unsafe_writes, proxy_username, owner, repo_gpgcheck, failovermethod, mode, includepkgs, timeout, enablegroups, name, ui_repoid_vars, module_hotfixes, gpgcakey, setype, keepcache, sslcacert (ca_cert), username, deltarpm_percentage, metadata_expire_filter."
+}
+serverd.lab.example.com | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "msg": "Unsupported parameters for (yum_repository) module: pgkey. Supported parameters include: ssl_check_cert_permissions, mode, throttle, gpgcakey, sslcacert (ca_cert), repo_gpgcheck, description, failovermethod, proxy_username, reposdir, state, password, ip_resolve, params, gpgkey, cost, proxy_password, setype, module_hotfixes, deltarpm_metadata_percentage, file, baseurl, bandwidth, async, includepkgs, owner, metalink, sslverify (validate_certs), priority, mirrorlist, name, sslclientkey (client_key), exclude, attributes (attr), keepalive, selevel, include, s3_enabled, metadata_expire_filter, group, enablegroups, username, retries, deltarpm_percentage, proxy, seuser, protect, ui_repoid_vars, sslclientcert (client_cert), http_caching, serole, skip_if_unavailable, keepcache, unsafe_writes, mirrorlist_expire, timeout, metadata_expire, gpgcheck, enabled."
+}
+serverb.lab.example.com | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "msg": "Unsupported parameters for (yum_repository) module: pgkey. Supported parameters include: exclude, sslverify (validate_certs), async, gpgkey, deltarpm_percentage, protect, file, baseurl, sslclientkey (client_key), http_caching, metalink, module_hotfixes, reposdir, ui_repoid_vars, unsafe_writes, repo_gpgcheck, includepkgs, keepcache, deltarpm_metadata_percentage, include, group, priority, setype, metadata_expire_filter, username, skip_if_unavailable, description, mode, sslclientcert (client_cert), proxy_username, retries, mirrorlist_expire, metadata_expire, params, s3_enabled, seuser, throttle, failovermethod, timeout, bandwidth, mirrorlist, attributes (attr), gpgcakey, gpgcheck, serole, name, ssl_check_cert_permissions, ip_resolve, cost, enablegroups, password, proxy_password, owner, sslcacert (ca_cert), proxy, keepalive, state, enabled, selevel."
+}
+serverc.lab.example.com | FAILED! => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "msg": "Unsupported parameters for (yum_repository) module: pgkey. Supported parameters include: metalink, unsafe_writes, deltarpm_metadata_percentage, s3_enabled, proxy_password, description, priority, serole, sslverify (validate_certs), http_caching, username, throttle, mirrorlist_expire, proxy, enabled, mode, name, skip_if_unavailable, gpgkey, owner, metadata_expire, group, keepalive, seuser, proxy_username, deltarpm_percentage, reposdir, file, includepkgs, module_hotfixes, keepcache, exclude, async, sslclientkey (client_key), repo_gpgcheck, mirrorlist, ssl_check_cert_permissions, setype, bandwidth, include, params, enablegroups, state, cost, retries, sslcacert (ca_cert), ui_repoid_vars, selevel, failovermethod, ip_resolve, gpgcheck, protect, attributes (attr), gpgcakey, metadata_expire_filter, password, sslclientcert (client_cert), baseurl, timeout."
+}
+[student@workstation playbooks]$ vim adhoc.sh
+[student@workstation playbooks]$ ./adhoc.sh
+serverd.lab.example.com | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "repo": "baseos",
+    "state": "present"
+}
+servera.lab.example.com | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "repo": "baseos",
+    "state": "present"
+}
+serverc.lab.example.com | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "repo": "baseos",
+    "state": "present"
+}
+serverb.lab.example.com | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "repo": "baseos",
+    "state": "present"
+}
+servera.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "appstream",
+    "state": "present"
+}
+serverc.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "appstream",
+    "state": "present"
+}
+serverd.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "appstream",
+    "state": "present"
+}
+serverb.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "repo": "appstream",
+    "state": "present"
+}
+[student@workstation playbooks]$ ansible all -a 'cat /etc/yum_repos.d/baseos.repo'
+serverd.lab.example.com | FAILED | rc=1 >>
+cat: /etc/yum_repos.d/baseos.repo: No such file or directorynon-zero return code
+serverc.lab.example.com | FAILED | rc=1 >>
+cat: /etc/yum_repos.d/baseos.repo: No such file or directorynon-zero return code
+serverb.lab.example.com | FAILED | rc=1 >>
+cat: /etc/yum_repos.d/baseos.repo: No such file or directorynon-zero return code
+servera.lab.example.com | FAILED | rc=1 >>
+cat: /etc/yum_repos.d/baseos.repo: No such file or directorynon-zero return code
+[student@workstation playbooks]$ ansible all -a 'cat /etc/yum.repos.d/baseos.repo'
+serverd.lab.example.com | CHANGED | rc=0 >>
+[baseos]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/BaseOS/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = baseos description
+servera.lab.example.com | CHANGED | rc=0 >>
+[baseos]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/BaseOS/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = baseos description
+serverc.lab.example.com | CHANGED | rc=0 >>
+[baseos]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/BaseOS/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = baseos description
+serverb.lab.example.com | CHANGED | rc=0 >>
+[baseos]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/BaseOS/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = baseos description
+[student@workstation playbooks]$ ansible all -a 'cat /etc/yum.repos.d/appstream.repo'
+serverd.lab.example.com | CHANGED | rc=0 >>
+[appstream]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/AppStream/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = app description
+servera.lab.example.com | CHANGED | rc=0 >>
+[appstream]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/AppStream/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = app description
+serverc.lab.example.com | CHANGED | rc=0 >>
+[appstream]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/AppStream/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = app description
+serverb.lab.example.com | CHANGED | rc=0 >>
+[appstream]
+async = 1
+baseurl = http://content.example.com/rhel9.0/x86_64/dvd/AppStream/
+enabled = 1
+gpgcheck = 1
+gpgkey = http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
+name = app description
+[student@workstation playbooks]$ ansible all -a 'ls -l /etc/yum.repos.d/'
+serverd.lab.example.com | CHANGED | rc=0 >>
+total 16
+-rw-r--r--. 1 root root 780 Sep 15  2022 additional.repo
+-rw-r--r--. 1 root root 220 May  3 01:35 appstream.repo
+-rw-r--r--. 1 root root 217 May  3 01:33 baseos.repo
+-rw-r--r--. 1 root root 386 Sep 15  2022 rhel_dvd.repo
+serverc.lab.example.com | CHANGED | rc=0 >>
+total 16
+-rw-r--r--. 1 root root 780 Sep 15  2022 additional.repo
+-rw-r--r--. 1 root root 220 May  3 01:35 appstream.repo
+-rw-r--r--. 1 root root 217 May  3 01:33 baseos.repo
+-rw-r--r--. 1 root root 386 Sep 15  2022 rhel_dvd.repo
+servera.lab.example.com | CHANGED | rc=0 >>
+total 16
+-rw-r--r--. 1 root root 780 Sep 15  2022 additional.repo
+-rw-r--r--. 1 root root 220 May  3 01:35 appstream.repo
+-rw-r--r--. 1 root root 217 May  3 01:33 baseos.repo
+-rw-r--r--. 1 root root 386 Sep 15  2022 rhel_dvd.repo
+serverb.lab.example.com | CHANGED | rc=0 >>
+total 16
+-rw-r--r--. 1 root root 780 Sep 15  2022 additional.repo
+-rw-r--r--. 1 root root 220 May  3 01:35 appstream.repo
+-rw-r--r--. 1 root root 217 May  3 01:33 baseos.repo
+-rw-r--r--. 1 root root 386 Sep 15  2022 rhel_dvd.repo
+[student@workstation playbooks]$ vim adhoc.sh
+[student@workstation playbooks]$ ls
+adhoc.sh  ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ git --version
+git version 2.31.1
+[student@workstation playbooks]$ git clone https://github.com/cavernon70-gif/ansible9.0
+Cloning into 'ansible9.0'...
+remote: Enumerating objects: 14, done.
+remote: Counting objects: 100% (14/14), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 14 (delta 2), reused 5 (delta 1), pack-reused 0 (from 0)
+Receiving objects: 100% (14/14), 14.50 KiB | 449.00 KiB/s, done.
+Resolving deltas: 100% (2/2), done.
+[student@workstation playbooks]$ ls
+adhoc.sh  ansible9.0  ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ cd roles
+[student@workstation roles]$ vim requirements.yml
+[student@workstation roles]$ cd ..
+[student@workstation playbooks]$ ansible-galaxy role install -r roles/requirements.yml -p roles
+Starting galaxy role install process
+- downloading role from file:///home/student/playbooks/ansible9.0/balancer.tar.gz
+- extracting balancer to /home/student/playbooks/roles/balancer
+- balancer was installed successfully
+- downloading role from file://home/student/playbooks/ansible9.0/phpinfo.tar.gz
+ [ERROR]: failed to download the file: <urlopen error [Errno 2] No such file or directory:
+'/student/playbooks/ansible9.0/phpinfo.tar.gz'>
+[WARNING]: - phpinfo was NOT installed successfully.
+ERROR! - you can use --ignore-errors to skip failed roles and finish processing the list.
+[student@workstation playbooks]$ ls
+adhoc.sh  ansible9.0  ansible.cfg  ansible-navigator.yml  inventory  roles
+[student@workstation playbooks]$ cd roles
+[student@workstation roles]$ vim requirements.yml 
+[student@workstation roles]$ cd ..
+[student@workstation playbooks]$ ansible-galaxy role install -r roles/requirements.yml -p roles
+Starting galaxy role install process
+- balancer is already installed, skipping.
+- downloading role from file:///home/student/playbooks/ansible9.0/phpinfo.tar.gz
+- extracting phpinfo to /home/student/playbooks/roles/phpinfo
+- phpinfo was installed successfully
+[student@workstation playbooks]$ ansible-galaxy role list
+# /home/student/playbooks/roles
+- balancer, (unknown version)
+- phpinfo, (unknown version)
+[student@workstation playbooks]$ cd roles
+[student@workstation roles]$ cat requirements.yml
+---
+  - src: file:///home/student/playbooks/ansible9.0/balancer.tar.gz
+    name: balancer
+  - src: file:///home/student/playbooks/ansible9.0/phpinfo.tar.gz
+    name: phpinfo
+[student@workstation roles]$ ls
+balancer  phpinfo  requirements.yml
+[student@workstation roles]$ ansible-galaxy role init apache
+- Role apache was created successfully
+[student@workstation roles]$ ansible-galaxy role list
+# /usr/share/ansible/roles
+- linux-system-roles.certificate, (unknown version)
+- linux-system-roles.cockpit, (unknown version)
+- linux-system-roles.crypto_policies, (unknown version)
+- linux-system-roles.firewall, (unknown version)
+- linux-system-roles.ha_cluster, (unknown version)
+- linux-system-roles.kdump, (unknown version)
+- linux-system-roles.kernel_settings, (unknown version)
+- linux-system-roles.logging, (unknown version)
+- linux-system-roles.metrics, (unknown version)
+- linux-system-roles.nbde_client, (unknown version)
+- linux-system-roles.nbde_server, (unknown version)
+- linux-system-roles.network, (unknown version)
+- linux-system-roles.postfix, (unknown version)
+- linux-system-roles.selinux, (unknown version)
+- linux-system-roles.ssh, (unknown version)
+- linux-system-roles.sshd, (unknown version)
+- linux-system-roles.storage, (unknown version)
+- linux-system-roles.timesync, (unknown version)
+- linux-system-roles.tlog, (unknown version)
+- linux-system-roles.vpn, (unknown version)
+- rhel-system-roles.certificate, (unknown version)
+- rhel-system-roles.cockpit, (unknown version)
+- rhel-system-roles.crypto_policies, (unknown version)
+- rhel-system-roles.firewall, (unknown version)
+- rhel-system-roles.ha_cluster, (unknown version)
+- rhel-system-roles.kdump, (unknown version)
+- rhel-system-roles.kernel_settings, (unknown version)
+- rhel-system-roles.logging, (unknown version)
+- rhel-system-roles.metrics, (unknown version)
+- rhel-system-roles.nbde_client, (unknown version)
+- rhel-system-roles.nbde_server, (unknown version)
+- rhel-system-roles.network, (unknown version)
+- rhel-system-roles.postfix, (unknown version)
+- rhel-system-roles.selinux, (unknown version)
+- rhel-system-roles.ssh, (unknown version)
+- rhel-system-roles.sshd, (unknown version)
+- rhel-system-roles.storage, (unknown version)
+- rhel-system-roles.timesync, (unknown version)
+- rhel-system-roles.tlog, (unknown version)
+- rhel-system-roles.vpn, (unknown version)
+# /etc/ansible/roles
+[WARNING]: - the configured path /home/student/.ansible/roles does not exist.
+[student@workstation roles]$ rm -rf linux*
+[student@workstation roles]$ rm -rf roles*
+[student@workstation roles]$ ansible-galaxy role list
+# /usr/share/ansible/roles
+- linux-system-roles.certificate, (unknown version)
+- linux-system-roles.cockpit, (unknown version)
+- linux-system-roles.crypto_policies, (unknown version)
+- linux-system-roles.firewall, (unknown version)
+- linux-system-roles.ha_cluster, (unknown version)
+- linux-system-roles.kdump, (unknown version)
+- linux-system-roles.kernel_settings, (unknown version)
+- linux-system-roles.logging, (unknown version)
+- linux-system-roles.metrics, (unknown version)
+- linux-system-roles.nbde_client, (unknown version)
+- linux-system-roles.nbde_server, (unknown version)
+- linux-system-roles.network, (unknown version)
+- linux-system-roles.postfix, (unknown version)
+- linux-system-roles.selinux, (unknown version)
+- linux-system-roles.ssh, (unknown version)
+- linux-system-roles.sshd, (unknown version)
+- linux-system-roles.storage, (unknown version)
+- linux-system-roles.timesync, (unknown version)
+- linux-system-roles.tlog, (unknown version)
+- linux-system-roles.vpn, (unknown version)
+- rhel-system-roles.certificate, (unknown version)
+- rhel-system-roles.cockpit, (unknown version)
+- rhel-system-roles.crypto_policies, (unknown version)
+- rhel-system-roles.firewall, (unknown version)
+- rhel-system-roles.ha_cluster, (unknown version)
+- rhel-system-roles.kdump, (unknown version)
+- rhel-system-roles.kernel_settings, (unknown version)
+- rhel-system-roles.logging, (unknown version)
+- rhel-system-roles.metrics, (unknown version)
+- rhel-system-roles.nbde_client, (unknown version)
+- rhel-system-roles.nbde_server, (unknown version)
+- rhel-system-roles.network, (unknown version)
+- rhel-system-roles.postfix, (unknown version)
+- rhel-system-roles.selinux, (unknown version)
+- rhel-system-roles.ssh, (unknown version)
+- rhel-system-roles.sshd, (unknown version)
+- rhel-system-roles.storage, (unknown version)
+- rhel-system-roles.timesync, (unknown version)
+- rhel-system-roles.tlog, (unknown version)
+- rhel-system-roles.vpn, (unknown version)
+# /etc/ansible/roles
+[WARNING]: - the configured path /home/student/.ansible/roles does not exist.
+[student@workstation roles]$ ll
+total 4
+drwxrwxr-x. 10 student student 154 May  3 02:06 apache
+drwxrwxr-x.  9 student student 141 May  3 02:00 balancer
+drwxrwxr-x.  9 student student 141 May  3 02:01 phpinfo
+-rw-rw-r--.  1 student student 174 May  3 02:00 requirements.yml
+[student@workstation roles]$ vim apache/tasks/main.yml 
+[student@workstation roles]$ vim apache/templates/index.j2
+[student@workstation roles]$ cd ../
+[student@workstation playbooks]$ vim apache_role.yml
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+Warning: Issues were found while applying the settings.
+   Hint: Command provided: 'run apache_role.yml'
+
+  Error: The following errors were found in the settings file
+         (/home/student/playbooks/ansible-navigator.yml):
+         In '': Additional properties are not allowed ('ansible-navigatory' was
+         unexpected).
+         In '': 'ansible-navigator' is a required property.
+   Hint: Check the settings file and compare it to the current version.
+         The current version can be found here: (https://ansible-navigator.readt
+         hedocs.io/en/latest/settings/#ansible-navigator-settings)
+         The schema used for validation can be seen with 'ansible-navigator
+         settings --schema'
+         A sample settings file can be created with 'ansible-navigator settings
+         --sample'
+
+   Note: Configuration failed, using default log file location.
+         (/home/student/playbooks/ansible-navigator.log) Log level set to debug
+   Hint: Review the hints and log file to see what went wrong.
+[student@workstation playbooks]$ vim ansible-navigator.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+Warning: Issues were found while applying the settings.
+   Hint: Command provided: 'run apache_role.yml'
+
+  Error: The following errors were found in the settings file
+         (/home/student/playbooks/ansible-navigator.yml):
+         In '': Additional properties are not allowed ('ansible-navigatory' was
+         unexpected).
+         In '': 'ansible-navigator' is a required property.
+   Hint: Check the settings file and compare it to the current version.
+         The current version can be found here: (https://ansible-navigator.readt
+         hedocs.io/en/latest/settings/#ansible-navigator-settings)
+         The schema used for validation can be seen with 'ansible-navigator
+         settings --schema'
+         A sample settings file can be created with 'ansible-navigator settings
+         --sample'
+
+   Note: Configuration failed, using default log file location.
+         (/home/student/playbooks/ansible-navigator.log) Log level set to debug
+   Hint: Review the hints and log file to see what went wrong.
+[student@workstation playbooks]$ podman images
+REPOSITORY                                  TAG         IMAGE ID      CREATED      SIZE
+utility.lab.example.com/ee-supported-rhel8  latest      5b5c0fdeca9a  2 years ago  1.45 GB
+[student@workstation playbooks]$ vim ansible-navigator.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+Warning: Issues were found while applying the settings.
+   Hint: Command provided: 'run apache_role.yml'
+
+  Error: The following errors were found in the settings file
+         (/home/student/playbooks/ansible-navigator.yml):
+         In 'ansible-navigator.playbook-artifact': Additional properties are not
+         allowed ('enabled' was unexpected).
+   Hint: Check the settings file and compare it to the current version.
+         The current version can be found here: (https://ansible-navigator.readt
+         hedocs.io/en/latest/settings/#ansible-navigator-settings)
+         The schema used for validation can be seen with 'ansible-navigator
+         settings --schema'
+         A sample settings file can be created with 'ansible-navigator settings
+         --sample'
+
+   Note: Configuration failed, using default log file location.
+         (/home/student/playbooks/ansible-navigator.log) Log level set to debug
+   Hint: Review the hints and log file to see what went wrong.
+[student@workstation playbooks]$ vim ansible-navigator.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+ERROR! couldn't resolve module/action 'ansible.buitlin.template'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/roles/apache/tasks/main.yml': line 22, column 4, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    state: enabled
+ - name: configure index file
+   ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+ERROR! couldn't resolve module/action 'ansible.buitlin.template'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/roles/apache/tasks/main.yml': line 22, column 4, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    state: enabled
+ - name: configure index file
+   ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+ERROR! couldn't resolve module/action 'ansible.buitlin.template'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/roles/apache/tasks/main.yml': line 22, column 4, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    state: enabled
+ - name: configure index file
+   ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ cat roles/apache/te
+templates/ tests/     
+[student@workstation playbooks]$ cat roles/apache/te
+templates/ tests/     
+[student@workstation playbooks]$ cat roles/apache/templates/index.j2 
+"my host is {{ansible_facts['fqdn']}} on {{ansible_facts['default_ipv4]['address']}}
+[student@workstation playbooks]$ vim roles/apache/templates/index.j2 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+ERROR! couldn't resolve module/action 'ansible.buitlin.template'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/roles/apache/tasks/main.yml': line 22, column 4, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+    state: enabled
+ - name: configure index file
+   ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+
+PLAY [apache role configure play] ******************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdinstall] ***********************************************************************************
+changed: [servera.lab.example.com]
+
+TASK [apache : httpdservicestart] ******************************************************************************
+changed: [servera.lab.example.com]
+
+TASK [apache : install firewalld] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : https service start on firewalld] ***************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.posix.firewalld) module: name. Supported parameters include: service, timeout, icmp_block, rich_rule, port, target, icmp_block_inversion, permanent, state, offline, port_forward, zone, source, masquerade, interface, immediate."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=4    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+
+PLAY [apache role configure play] ******************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdinstall] ***********************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdservicestart] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : install firewalld] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : https service start on firewalld] ***************************************************************
+changed: [servera.lab.example.com]
+
+TASK [apache : configure index file] ***************************************************************************
+An exception occurred during task execution. To see the full traceback, use -vvv. The error was: ansible.errors.AnsibleError: template error while templating string: expected token ',', got 'address'. String: my host is {{ansible_facts['fqdn']}} on {{ansible_facts['default_ipv4]['address']}}
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "AnsibleError: template error while templating string: expected token ',', got 'address'. String: my host is {{ansible_facts['fqdn']}} on {{ansible_facts['default_ipv4]['address']}}\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=5    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim roles/apache/templates/index.j2 
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+
+PLAY [apache role configure play] ******************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdinstall] ***********************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdservicestart] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : install firewalld] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : https service start on firewalld] ***************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : configure index file] ***************************************************************************
+changed: [servera.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=6    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ curl servera
+my host is servera.lab.example.com on 172.25.250.10
+[student@workstation playbooks]$ vim roles/apache/tasks/main.yml 
+[student@workstation playbooks]$ curl servera
+my host is servera.lab.example.com on 172.25.250.10
+[student@workstation playbooks]$ ansible-navigator run apache_role.yml
+
+PLAY [apache role configure play] ******************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdinstall] ***********************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : httpdservicestart] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : install firewalld] ******************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : firewalld service start] ************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : https service start on firewalld] ***************************************************************
+ok: [servera.lab.example.com]
+
+TASK [apache : configure index file] ***************************************************************************
+ok: [servera.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ curl servera
+my host is servera.lab.example.com on 172.25.250.10
+[student@workstation playbooks]$ cat roles/apache/tasks/main.yml 
+---
+# tasks file for apache
+ - name: httpdinstall
+   ansible.builtin.dnf:
+    name: httpd
+    state: present
+ - name: httpdservicestart
+   ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: yes
+ - name: install firewalld
+   ansible.builtin.dnf:
+    name: firewalld
+    state: present
+ - name: firewalld service start
+   ansible.builtin.service:
+    name: firewalld
+    state: started
+    enabled: yes
+ - name: https service start on firewalld
+   ansible.posix.firewalld:
+    service: http
+    permanent: yes
+    immediate: yes
+    state: enabled
+ - name: configure index file
+   ansible.builtin.template:
+    src: index.j2
+    dest: /var/www/html/index.html
+[student@workstation playbooks]$ cat roles/apache/templates/index.j2 
+my host is {{ansible_facts['fqdn']}} on {{ansible_facts['default_ipv4']['address']}}
+[student@workstation playbooks]$ vim  apache_role.yml
+[student@workstation playbooks]$ cat apache_role.yml
+---
+- name: apache role configure play
+  hosts: dev
+  roles: 
+    - apache
+[student@workstation playbooks]$ vim roles.yml
+[student@workstation playbooks]$ ansible-navigator run roles.yml
+
+PLAY [php info role configure play] ****************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [phpinfo : php installation and configuration] ************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverc.lab.example.com]
+
+TASK [phpinfo : httpd service start] ***************************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverc.lab.example.com]
+
+TASK [phpinfo : configure to firewall] *************************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverc.lab.example.com]
+
+TASK [phpinfo : configure index file] **************************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverc.lab.example.com]
+
+TASK [phpinfo : adding content] ********************************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverc.lab.example.com]
+
+PLAY [blanacer role configure plau] ****************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+
+TASK [balancer : haproxy installation] *************************************************************************
+changed: [serverb.lab.example.com]
+
+TASK [balancer : haproxy service start] ************************************************************************
+changed: [serverb.lab.example.com]
+
+TASK [balancer : confiure firewalld] ***************************************************************************
+changed: [serverb.lab.example.com]
+
+TASK [balancer : configure haproxy] ****************************************************************************
+changed: [serverb.lab.example.com]
+
+RUNNING HANDLER [balancer : haproxy service restart] ***********************************************************
+changed: [serverb.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+serverb.lab.example.com    : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverd
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverb
+welcome to serverc on 172.25.250.12
+[student@workstation playbooks]$ curl serverb
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverb
+welcome to serverc on 172.25.250.12
+[student@workstation playbooks]$ curl serverb
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverb
+welcome to serverc on 172.25.250.12
+[student@workstation playbooks]$ cat roles.xml
+cat: roles.xml: No such file or directory
+[student@workstation playbooks]$ cat roles.yml
+---
+- name: php info role configure play
+  hosts: webservers
+  roles:
+    - phpinfo
+- name: blanacer role configure plau
+  hosts: balancers
+  roles:
+    - balancer
+[student@workstation playbooks]$ curl serverb/php
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+[student@workstation playbooks]$ curl serverb/index.php
+welcome to serverc on 172.25.250.12
+[student@workstation playbooks]$ curl serverb/index.php
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ curl serverb/index.php
+welcome to serverc on 172.25.250.12
+[student@workstation playbooks]$ curl serverb/index.php
+welcome to serverd on 172.25.250.13
+[student@workstation playbooks]$ su - root
+Password: 
+Last login: Sat May  3 00:56:50 EDT 2025 on pts/0
+[root@workstation ~]# dnf install rhel-system-roles-1.16.2-1.el9_0.noarch -y
+Last metadata expiration check: 2:09:07 ago on Sat 03 May 2025 12:43:40 AM EDT.
+Dependencies resolved.
+================================================================================================================
+ Package                   Architecture   Version                Repository                                Size
+================================================================================================================
+Downgrading:
+ rhel-system-roles         noarch         1.16.2-1.el9_0         rhel-9-for-x86_64-appstream-rpms         1.8 M
+
+Transaction Summary
+================================================================================================================
+Downgrade  1 Package
+
+Total download size: 1.8 M
+Downloading Packages:
+rhel-system-roles-1.16.2-1.el9_0.noarch.rpm                                      21 MB/s | 1.8 MB     00:00    
+----------------------------------------------------------------------------------------------------------------
+Total                                                                            20 MB/s | 1.8 MB     00:00     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                                                        1/1 
+  Downgrading      : rhel-system-roles-1.16.2-1.el9_0.noarch                                                1/2 
+  Cleanup          : rhel-system-roles-1.16.2-1.el9_0.2.noarch                                              2/2 
+  Verifying        : rhel-system-roles-1.16.2-1.el9_0.noarch                                                1/2 
+  Verifying        : rhel-system-roles-1.16.2-1.el9_0.2.noarch                                              2/2 
+
+Downgraded:
+  rhel-system-roles-1.16.2-1.el9_0.noarch                                                                       
+
+Complete!
+[root@workstation ~]# exit
+logout
+[student@workstation playbooks]$ ls /etc/ansible/roles
+[student@workstation playbooks]$ ls -l /usr/share/ansbile/roles
+ls: cannot access '/usr/share/ansbile/roles': No such file or directory
+[student@workstation playbooks]$ ls -l /usr/ansible/share/roles
+ls: cannot access '/usr/ansible/share/roles': No such file or directory
+[student@workstation playbooks]$ ls -l /usr/share/ansible/roles
+total 80
+lrwxrwxrwx.  1 root root   29 Mar 31  2022 linux-system-roles.certificate -> rhel-system-roles.certificate
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.cockpit -> rhel-system-roles.cockpit
+lrwxrwxrwx.  1 root root   33 Mar 31  2022 linux-system-roles.crypto_policies -> rhel-system-roles.crypto_policies
+lrwxrwxrwx.  1 root root   26 Mar 31  2022 linux-system-roles.firewall -> rhel-system-roles.firewall
+lrwxrwxrwx.  1 root root   28 Mar 31  2022 linux-system-roles.ha_cluster -> rhel-system-roles.ha_cluster
+lrwxrwxrwx.  1 root root   23 Mar 31  2022 linux-system-roles.kdump -> rhel-system-roles.kdump
+lrwxrwxrwx.  1 root root   33 Mar 31  2022 linux-system-roles.kernel_settings -> rhel-system-roles.kernel_settings
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.logging -> rhel-system-roles.logging
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.metrics -> rhel-system-roles.metrics
+lrwxrwxrwx.  1 root root   29 Mar 31  2022 linux-system-roles.nbde_client -> rhel-system-roles.nbde_client
+lrwxrwxrwx.  1 root root   29 Mar 31  2022 linux-system-roles.nbde_server -> rhel-system-roles.nbde_server
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.network -> rhel-system-roles.network
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.postfix -> rhel-system-roles.postfix
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.selinux -> rhel-system-roles.selinux
+lrwxrwxrwx.  1 root root   21 Mar 31  2022 linux-system-roles.ssh -> rhel-system-roles.ssh
+lrwxrwxrwx.  1 root root   22 Mar 31  2022 linux-system-roles.sshd -> rhel-system-roles.sshd
+lrwxrwxrwx.  1 root root   25 Mar 31  2022 linux-system-roles.storage -> rhel-system-roles.storage
+lrwxrwxrwx.  1 root root   26 Mar 31  2022 linux-system-roles.timesync -> rhel-system-roles.timesync
+lrwxrwxrwx.  1 root root   22 Mar 31  2022 linux-system-roles.tlog -> rhel-system-roles.tlog
+lrwxrwxrwx.  1 root root   21 Mar 31  2022 linux-system-roles.vpn -> rhel-system-roles.vpn
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.certificate
+drwxr-xr-x.  9 root root 4096 May  3 02:52 rhel-system-roles.cockpit
+drwxr-xr-x.  8 root root 4096 May  3 02:52 rhel-system-roles.crypto_policies
+drwxr-xr-x.  7 root root 4096 May  3 02:52 rhel-system-roles.firewall
+drwxr-xr-x.  9 root root 4096 May  3 02:52 rhel-system-roles.ha_cluster
+drwxr-xr-x.  9 root root 4096 May  3 02:52 rhel-system-roles.kdump
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.kernel_settings
+drwxr-xr-x.  7 root root 4096 May  3 02:52 rhel-system-roles.logging
+drwxr-xr-x.  8 root root 4096 May  3 02:52 rhel-system-roles.metrics
+drwxr-xr-x. 11 root root 4096 May  3 02:52 rhel-system-roles.nbde_client
+drwxr-xr-x.  8 root root 4096 May  3 02:52 rhel-system-roles.nbde_server
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.network
+drwxr-xr-x.  9 root root 4096 May  3 02:52 rhel-system-roles.postfix
+drwxr-xr-x.  9 root root 4096 May  3 02:52 rhel-system-roles.selinux
+drwxr-xr-x.  8 root root 4096 May  3 02:52 rhel-system-roles.ssh
+drwxr-xr-x.  9 root root 4096 May  3 02:52 rhel-system-roles.sshd
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.storage
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.timesync
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.tlog
+drwxr-xr-x. 10 root root 4096 May  3 02:52 rhel-system-roles.vpn
+[student@workstation playbooks]$ cp -rv /usr/share/ansible/roles/rhel-system-roles.timesync roles
+'/usr/share/ansible/roles/rhel-system-roles.timesync' -> 'roles/rhel-system-roles.timesync'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/COPYING' -> 'roles/rhel-system-roles.timesync/COPYING'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/README.html' -> 'roles/rhel-system-roles.timesync/README.html'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/README.md' -> 'roles/rhel-system-roles.timesync/README.md'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/ansible_pytest_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/ansible_pytest_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/custom_requirements.txt' -> 'roles/rhel-system-roles.timesync/custom_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/molecule_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/molecule_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/pylint_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/pylint_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/pylintrc' -> 'roles/rhel-system-roles.timesync/pylintrc'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/pytest_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/pytest_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tox.ini' -> 'roles/rhel-system-roles.timesync/tox.ini'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/meta' -> 'roles/rhel-system-roles.timesync/meta'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/meta/main.yml' -> 'roles/rhel-system-roles.timesync/meta/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/defaults' -> 'roles/rhel-system-roles.timesync/defaults'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/defaults/main.yml' -> 'roles/rhel-system-roles.timesync/defaults/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tasks' -> 'roles/rhel-system-roles.timesync/tasks'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tasks/main.yml' -> 'roles/rhel-system-roles.timesync/tasks/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/handlers' -> 'roles/rhel-system-roles.timesync/handlers'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/handlers/main.yml' -> 'roles/rhel-system-roles.timesync/handlers/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates' -> 'roles/rhel-system-roles.timesync/templates'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/chrony.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/chrony.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/chronyd.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/chronyd.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ntp.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/ntp.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ntpd.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/ntpd.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/phc2sys.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/phc2sys.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ptp4l.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/ptp4l.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ptp4l.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/ptp4l.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/timemaster.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/timemaster.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars' -> 'roles/rhel-system-roles.timesync/vars'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/RedHat_9.yml' -> 'roles/rhel-system-roles.timesync/vars/RedHat_9.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/default.yml' -> 'roles/rhel-system-roles.timesync/vars/default.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/main.yml' -> 'roles/rhel-system-roles.timesync/vars/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/CentOS_6.yml' -> 'roles/rhel-system-roles.timesync/vars/CentOS_6.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/CentOS_9.yml' -> 'roles/rhel-system-roles.timesync/vars/CentOS_9.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/Debian.yml' -> 'roles/rhel-system-roles.timesync/vars/Debian.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/Fedora_33.yml' -> 'roles/rhel-system-roles.timesync/vars/Fedora_33.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/RedHat_6.yml' -> 'roles/rhel-system-roles.timesync/vars/RedHat_6.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/library' -> 'roles/rhel-system-roles.timesync/library'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/library/timesync_provider.sh' -> 'roles/rhel-system-roles.timesync/library/timesync_provider.sh'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests' -> 'roles/rhel-system-roles.timesync/tests'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/.fmf' -> 'roles/rhel-system-roles.timesync/tests/.fmf'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/.fmf/version' -> 'roles/rhel-system-roles.timesync/tests/.fmf/version'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/roles' -> 'roles/rhel-system-roles.timesync/tests/roles'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/inventory.yaml.j2' -> 'roles/rhel-system-roles.timesync/tests/inventory.yaml.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/provision.fmf' -> 'roles/rhel-system-roles.timesync/tests/provision.fmf'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_chrony.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_chrony.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_default.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_default.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_default_vars.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_default_vars.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_default_wrapper.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_default_wrapper.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider1.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider1.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider2.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider2.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider3.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider3.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider4.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider4.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider5.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider5.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider6.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider6.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_ptp.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_ptp.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ptp_multi.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ptp_multi.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ptp_single.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ptp_single.yml'
+[student@workstation playbooks]$ cp -rv /usr/share/ansible/roles/rhel-system-roles.timesync roles/
+'/usr/share/ansible/roles/rhel-system-roles.timesync/COPYING' -> 'roles/rhel-system-roles.timesync/COPYING'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/README.html' -> 'roles/rhel-system-roles.timesync/README.html'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/README.md' -> 'roles/rhel-system-roles.timesync/README.md'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/ansible_pytest_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/ansible_pytest_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/custom_requirements.txt' -> 'roles/rhel-system-roles.timesync/custom_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/molecule_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/molecule_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/pylint_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/pylint_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/pylintrc' -> 'roles/rhel-system-roles.timesync/pylintrc'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/pytest_extra_requirements.txt' -> 'roles/rhel-system-roles.timesync/pytest_extra_requirements.txt'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tox.ini' -> 'roles/rhel-system-roles.timesync/tox.ini'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/meta/main.yml' -> 'roles/rhel-system-roles.timesync/meta/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/defaults/main.yml' -> 'roles/rhel-system-roles.timesync/defaults/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tasks/main.yml' -> 'roles/rhel-system-roles.timesync/tasks/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/handlers/main.yml' -> 'roles/rhel-system-roles.timesync/handlers/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/chrony.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/chrony.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/chronyd.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/chronyd.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ntp.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/ntp.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ntpd.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/ntpd.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/phc2sys.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/phc2sys.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ptp4l.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/ptp4l.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/ptp4l.sysconfig.j2' -> 'roles/rhel-system-roles.timesync/templates/ptp4l.sysconfig.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/templates/timemaster.conf.j2' -> 'roles/rhel-system-roles.timesync/templates/timemaster.conf.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/RedHat_9.yml' -> 'roles/rhel-system-roles.timesync/vars/RedHat_9.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/default.yml' -> 'roles/rhel-system-roles.timesync/vars/default.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/main.yml' -> 'roles/rhel-system-roles.timesync/vars/main.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/CentOS_6.yml' -> 'roles/rhel-system-roles.timesync/vars/CentOS_6.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/CentOS_9.yml' -> 'roles/rhel-system-roles.timesync/vars/CentOS_9.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/Debian.yml' -> 'roles/rhel-system-roles.timesync/vars/Debian.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/Fedora_33.yml' -> 'roles/rhel-system-roles.timesync/vars/Fedora_33.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/vars/RedHat_6.yml' -> 'roles/rhel-system-roles.timesync/vars/RedHat_6.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/library/timesync_provider.sh' -> 'roles/rhel-system-roles.timesync/library/timesync_provider.sh'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/.fmf/version' -> 'roles/rhel-system-roles.timesync/tests/.fmf/version'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/inventory.yaml.j2' -> 'roles/rhel-system-roles.timesync/tests/inventory.yaml.j2'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/provision.fmf' -> 'roles/rhel-system-roles.timesync/tests/provision.fmf'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_chrony.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_chrony.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_default.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_default.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_default_vars.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_default_vars.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_default_wrapper.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_default_wrapper.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider1.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider1.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider2.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider2.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider3.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider3.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider4.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider4.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider5.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider5.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_provider6.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_provider6.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ntp_ptp.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ntp_ptp.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ptp_multi.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ptp_multi.yml'
+'/usr/share/ansible/roles/rhel-system-roles.timesync/tests/tests_ptp_single.yml' -> 'roles/rhel-system-roles.timesync/tests/tests_ptp_single.yml'
+[student@workstation playbooks]$ ansible-galaxy role list
+# /home/student/playbooks/roles
+- balancer, (unknown version)
+- phpinfo, (unknown version)
+- apache, (unknown version)
+- rhel-system-roles.timesync, (unknown version)
+[student@workstation playbooks]$ vim timesync.yml
+[student@workstation playbooks]$ ansible-navigator run timesync.yml
+
+PLAY [ntp role configuration play] *****************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Set version specific variables] *********************************************
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Populate service facts] *****************************************************
+[WARNING]: Unable to query 'service' tool (1):
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Set variable `timesync_services` with filtered uniq service names] **********
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Check that variable 'timesync_services' is defined] *************************
+ok: [servera.lab.example.com] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [serverb.lab.example.com] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [serverc.lab.example.com] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+ok: [serverd.lab.example.com] => {
+    "changed": false,
+    "msg": "All assertions passed"
+}
+
+TASK [rhel-system-roles.timesync : Check if only NTP is needed] ************************************************
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Check if single PTP is needed] **********************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Check if both NTP and PTP are needed] ***************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Determine current NTP provider] *********************************************
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Select NTP provider] ********************************************************
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Install chrony] *************************************************************
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Install ntp] ****************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Install linuxptp] ***********************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Gather package facts] *******************************************************
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Run phc_ctl on PTP interface] ***********************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Check if PTP interface supports HW timestamping] ****************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate chrony.conf file] **************************************************
+changed: [serverd.lab.example.com]
+changed: [serverb.lab.example.com]
+changed: [servera.lab.example.com]
+changed: [serverc.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate chronyd sysconfig file] ********************************************
+changed: [serverb.lab.example.com]
+changed: [servera.lab.example.com]
+changed: [serverc.lab.example.com]
+changed: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate ntp.conf file] *****************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate ntpd sysconfig file] ***********************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate ptp4l.conf file] ***************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate ptp4l sysconfig file] **********************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate phc2sys sysconfig file] ********************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Generate timemaster.conf file] **********************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Update network sysconfig file] **********************************************
+changed: [serverd.lab.example.com]
+changed: [servera.lab.example.com]
+changed: [serverc.lab.example.com]
+changed: [serverb.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable chronyd] ************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable ntpd] ***************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable ntpdate] ************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable sntp] ***************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable ptp4l] **************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable phc2sys] ************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Disable timemaster] *********************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Enable chronyd] *************************************************************
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Enable ntpd] ****************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Enable ptp4l] ***************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Enable phc2sys] *************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [rhel-system-roles.timesync : Enable timemaster] **********************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+RUNNING HANDLER [rhel-system-roles.timesync : restart chronyd] *************************************************
+changed: [serverd.lab.example.com]
+changed: [serverb.lab.example.com]
+changed: [servera.lab.example.com]
+changed: [serverc.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=15   changed=4    unreachable=0    failed=0    skipped=23   rescued=0    ignored=0   
+serverb.lab.example.com    : ok=15   changed=4    unreachable=0    failed=0    skipped=23   rescued=0    ignored=0   
+serverc.lab.example.com    : ok=15   changed=4    unreachable=0    failed=0    skipped=23   rescued=0    ignored=0   
+serverd.lab.example.com    : ok=15   changed=4    unreachable=0    failed=0    skipped=23   rescued=0    ignored=0   
+
+[student@workstation playbooks]$ cat timesync.yml
+---
+- name: ntp role configuration play
+  hosts: all
+  vars: 
+    timesync_ntp_servers: 
+     -  hostname: classroom.example.com
+        iburst: yes
+  roles:
+    - rhel-system-roles.timesync
+
+[student@workstation playbooks]$ tree roles
+roles
+├── apache
+│   ├── defaults
+│   │   └── main.yml
+│   ├── files
+│   ├── handlers
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   ├── tasks
+│   │   └── main.yml
+│   ├── templates
+│   │   └── index.j2
+│   ├── tests
+│   │   ├── inventory
+│   │   └── test.yml
+│   └── vars
+│       └── main.yml
+├── balancer
+│   ├── defaults
+│   │   └── main.yml
+│   ├── handlers
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   ├── tasks
+│   │   └── main.yml
+│   ├── templates
+│   │   ├── haproxy.cfg.j2
+│   │   └── index.html.j2
+│   ├── tests
+│   │   ├── inventory
+│   │   └── test.yml
+│   └── vars
+│       └── main.yml
+├── phpinfo
+│   ├── defaults
+│   │   └── main.yml
+│   ├── handlers
+│   │   └── main.yml
+│   ├── meta
+│   │   └── main.yml
+│   ├── README.md
+│   ├── tasks
+│   │   └── main.yml
+│   ├── templates
+│   │   └── index.j2
+│   ├── tests
+│   │   ├── inventory
+│   │   └── test.yml
+│   └── vars
+│       └── main.yml
+├── requirements.yml
+└── rhel-system-roles.timesync
+    ├── ansible_pytest_extra_requirements.txt
+    ├── COPYING
+    ├── custom_requirements.txt
+    ├── defaults
+    │   └── main.yml
+    ├── handlers
+    │   └── main.yml
+    ├── library
+    │   └── timesync_provider.sh
+    ├── meta
+    │   └── main.yml
+    ├── molecule_extra_requirements.txt
+    ├── pylint_extra_requirements.txt
+    ├── pylintrc
+    ├── pytest_extra_requirements.txt
+    ├── README.html
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    ├── templates
+    │   ├── chrony.conf.j2
+    │   ├── chronyd.sysconfig.j2
+    │   ├── ntp.conf.j2
+    │   ├── ntpd.sysconfig.j2
+    │   ├── phc2sys.sysconfig.j2
+    │   ├── ptp4l.conf.j2
+    │   ├── ptp4l.sysconfig.j2
+    │   └── timemaster.conf.j2
+    ├── tests
+    │   ├── inventory.yaml.j2
+    │   ├── provision.fmf
+    │   ├── roles
+    │   ├── tests_chrony.yml
+    │   ├── tests_default_vars.yml
+    │   ├── tests_default_wrapper.yml
+    │   ├── tests_default.yml
+    │   ├── tests_ntp_provider1.yml
+    │   ├── tests_ntp_provider2.yml
+    │   ├── tests_ntp_provider3.yml
+    │   ├── tests_ntp_provider4.yml
+    │   ├── tests_ntp_provider5.yml
+    │   ├── tests_ntp_provider6.yml
+    │   ├── tests_ntp_ptp.yml
+    │   ├── tests_ntp.yml
+    │   ├── tests_ptp_multi.yml
+    │   └── tests_ptp_single.yml
+    ├── tox.ini
+    └── vars
+        ├── CentOS_6.yml
+        ├── CentOS_9.yml
+        ├── Debian.yml
+        ├── default.yml
+        ├── Fedora_33.yml
+        ├── main.yml
+        ├── RedHat_6.yml
+        └── RedHat_9.yml
+
+35 directories, 76 files
+[student@workstation playbooks]$ vim packages.yml
+[student@workstation playbooks]$ ansible-navigator run packages.yml
+[WARNING]: Could not match supplied host pattern, ignoring: balancer
+
+PLAY [php and mariadb install in devb and test] ****************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [php mariadb install] *************************************************************************************
+changed: [servera.lab.example.com]
+
+PLAY [development tool install in prod group] ******************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [install development tools] *******************************************************************************
+changed: [serverd.lab.example.com]
+changed: [serverc.lab.example.com]
+
+PLAY [update all packages in dev group] ************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [update all packages] *************************************************************************************
+changed: [servera.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ vim packages.yml
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ ansible-navigator run webcontent.yml
+ERROR! couldn't resolve module/action 'ansible.buitlin.file'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/webcontent.yml': line 13, column 5, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+      state: present
+  - name: index file creation
+    ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ ansible-navigator run webcontent.yml
+
+PLAY [webdev directory creation and configuration] *************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [webdev directory creation] *******************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.file) module: groups, sctype. Supported parameters include: mode, owner, access_time, modification_time, setype, state, group, follow, serole, force, unsafe_writes, access_time_format, path (dest, name), attributes (attr), modification_time_format, _diff_peek, _original_basename, seuser, recurse, selevel, src."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ ansible-navigator run webcontent.yml
+
+PLAY [webdev directory creation and configuration] *************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [webdev directory creation] *******************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.file) module: groups, sctype. Supported parameters include: recurse, force, follow, selevel, seuser, mode, unsafe_writes, setype, access_time, src, path (dest, name), state, owner, modification_time, modification_time_format, access_time_format, _original_basename, attributes (attr), serole, group, _diff_peek."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ ansible-navigator run webcontent.yml
+
+PLAY [webdev directory creation and configuration] *************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [webdev directory creation] *******************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.file) module: groups. Supported parameters include: access_time_format, unsafe_writes, seuser, src, follow, selevel, owner, attributes (attr), serole, force, access_time, _original_basename, modification_time_format, state, _diff_peek, setype, group, path (dest, name), modification_time, mode, recurse."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ ansible-navigator run webcontent.yml
+
+PLAY [webdev directory creation and configuration] *************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+
+TASK [webdev directory creation] *******************************************************************************
+changed: [servera.lab.example.com]
+
+TASK [index file creation] *************************************************************************************
+changed: [servera.lab.example.com]
+
+TASK [index file configure] ************************************************************************************
+changed: [servera.lab.example.com]
+
+TASK [create a link] *******************************************************************************************
+changed: [servera.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ curl serverb/webdev/
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+[student@workstation playbooks]$ curl servera/webdev/
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+[student@workstation playbooks]$ curl dev/webdev/
+curl: (6) Could not resolve host: dev
+[student@workstation playbooks]$ curl servera/webdev/
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL was not found on this server.</p>
+</body></html>
+[student@workstation playbooks]$ vim webcontent.yml
+[student@workstation playbooks]$ curl servera/webdev
+Development[student@workstation playbooks]$ cat webcontent.yml
+---
+- name: webdev directory creation and configuration
+  hosts: dev
+  tasks: 
+  - name: webdev directory creation
+    ansible.builtin.file:
+      path: /webdev
+      group: devops
+      mode: u=rxx,g=rxx,o=rx,g=g+s
+      setype: httpd_sys_content_t
+      recurse: yes
+      state: directory
+      force: yes
+  - name: index file creation
+    ansible.builtin.file:
+      path: /webdev/index.html
+      state: touch
+  - name: index file configure
+    ansible.builtin.copy:
+      content: "Development"
+      dest: /webdev/index.html
+  - name: create a link
+    ansible.builtin.file:
+      src: /webdev/index.html
+      dest: /var/www/html/webdev
+      state: link
+[student@workstation playbooks]$
