@@ -3084,4 +3084,1626 @@ VDB_DISK_SIZE= "1.00 GB"
       src: /webdev/index.html
       dest: /var/www/html/webdev
       state: link
+[student@workstation playbooks]$ vim issue.yml
+[student@workstation playbooks]$ ansible-navigator run issue.yml
+
+PLAY [issue file configuration play] ***************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [on dev host] *********************************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"msg": "The conditional check 'ansible_inventory_name in groups['dev']' failed. The error was: error while evaluating conditional (ansible_inventory_name in groups['dev']): 'ansible_inventory_name' is undefined\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 5, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: on dev host\n      ^ here\n"}
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "The conditional check 'ansible_inventory_name in groups['dev']' failed. The error was: error while evaluating conditional (ansible_inventory_name in groups['dev']): 'ansible_inventory_name' is undefined\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 5, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: on dev host\n      ^ here\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "The conditional check 'ansible_inventory_name in groups['dev']' failed. The error was: error while evaluating conditional (ansible_inventory_name in groups['dev']): 'ansible_inventory_name' is undefined\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 5, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: on dev host\n      ^ here\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "The conditional check 'ansible_inventory_name in groups['dev']' failed. The error was: error while evaluating conditional (ansible_inventory_name in groups['dev']): 'ansible_inventory_name' is undefined\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 5, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n  tasks:\n    - name: on dev host\n      ^ here\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim issue.yml
+[student@workstation playbooks]$ vim issue.yml
+[student@workstation playbooks]$ ansible-navigator run issue.yml
+
+PLAY [issue file configuration play] ***************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [on dev host] *********************************************************************************************
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+changed: [servera.lab.example.com]
+
+TASK [on test host] ********************************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"msg": "The conditional check 'inventory_hostname in groups['balancer']' failed. The error was: error while evaluating conditional (inventory_hostname in groups['balancer']): 'dict object' has no attribute 'balancer'\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 10, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      when: inventory_hostname in groups['dev']\n    - name: on test host\n      ^ here\n"}
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "The conditional check 'inventory_hostname in groups['balancer']' failed. The error was: error while evaluating conditional (inventory_hostname in groups['balancer']): 'dict object' has no attribute 'balancer'\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 10, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      when: inventory_hostname in groups['dev']\n    - name: on test host\n      ^ here\n"}
+fatal: [serverc.lab.example.com]: FAILED! => {"msg": "The conditional check 'inventory_hostname in groups['balancer']' failed. The error was: error while evaluating conditional (inventory_hostname in groups['balancer']): 'dict object' has no attribute 'balancer'\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 10, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      when: inventory_hostname in groups['dev']\n    - name: on test host\n      ^ here\n"}
+fatal: [serverd.lab.example.com]: FAILED! => {"msg": "The conditional check 'inventory_hostname in groups['balancer']' failed. The error was: error while evaluating conditional (inventory_hostname in groups['balancer']): 'dict object' has no attribute 'balancer'\n\nThe error appears to be in '/home/student/playbooks/issue.yml': line 10, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n      when: inventory_hostname in groups['dev']\n    - name: on test host\n      ^ here\n"}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=2    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim issue.yml
+[student@workstation playbooks]$ ansible-navigator run issue.yml
+
+PLAY [issue file configuration play] ***************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [on dev host] *********************************************************************************************
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [on test host] ********************************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+changed: [serverb.lab.example.com]
+
+TASK [on prod host] ********************************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+changed: [serverc.lab.example.com]
+changed: [serverd.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=2    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible all -a 'cat /etc/issue'
+serverb.lab.example.com | CHANGED | rc=0 >>
+Balancer
+servera.lab.example.com | CHANGED | rc=0 >>
+Development
+serverd.lab.example.com | CHANGED | rc=0 >>
+Production
+serverc.lab.example.com | CHANGED | rc=0 >>
+Production
+[student@workstation playbooks]$ cat issue.yml
+---
+- name: issue file configuration play
+  hosts: all
+  tasks:
+    - name: on dev host
+      ansible.builtin.copy:
+        content: Development
+        dest: /etc/issue
+      when: inventory_hostname in groups['dev']
+    - name: on test host                          
+      ansible.builtin.copy:                      
+        content: Balancer                     
+        dest: /etc/issue                         
+      when: inventory_hostname in groups['balancers']
+    - name: on prod host                          
+      ansible.builtin.copy:                      
+        content: Production                     
+        dest: /etc/issue                         
+      when: inventory_hostname in groups['prod']
+
+[student@workstation playbooks]$ vim myhosts.j2
+[student@workstation playbooks]$ vim myhosts.j2
+[student@workstation playbooks]$ vim hosts.yml
+[student@workstation playbooks]$ ansible-navigator run myhosts.j2 
+ERROR! A playbook must be a list of plays, got a <class 'ansible.parsing.yaml.objects.AnsibleUnicode'> instead
+
+The error appears to be in '/home/student/playbooks/myhosts.j2': line 1, column 1, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+
+127.0.0.1 localhost.localdomain localhost
+^ here
+Please review the log for errors.
+[student@workstation playbooks]$ ansible-navigator run hosts.yml
+
+PLAY [etc hosts file configuration play] ***********************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [on dev group] ********************************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": false, "checksum": "5b96e81cf6a078b1ee48b6d127ff890b963c9d30", "msg": "Unsupported parameters for (ansible.legacy.copy) module: when. Supported parameters include: directory_mode, local_follow, attributes (attr), _original_basename, src, dest, checksum, group, follow, force, seuser, backup, remote_src, unsafe_writes, owner, mode, serole, setype, content, selevel, validate."}
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": false, "checksum": "5b96e81cf6a078b1ee48b6d127ff890b963c9d30", "msg": "Unsupported parameters for (ansible.legacy.copy) module: when. Supported parameters include: selevel, follow, backup, seuser, group, validate, checksum, src, local_follow, dest, unsafe_writes, _original_basename, force, attributes (attr), remote_src, mode, directory_mode, owner, content, setype, serole."}
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "checksum": "5b96e81cf6a078b1ee48b6d127ff890b963c9d30", "msg": "Unsupported parameters for (ansible.legacy.copy) module: when. Supported parameters include: owner, selevel, src, serole, directory_mode, unsafe_writes, attributes (attr), backup, _original_basename, checksum, force, dest, remote_src, follow, group, seuser, local_follow, validate, content, setype, mode."}
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": false, "checksum": "5b96e81cf6a078b1ee48b6d127ff890b963c9d30", "msg": "Unsupported parameters for (ansible.legacy.copy) module: when. Supported parameters include: directory_mode, src, selevel, unsafe_writes, dest, seuser, content, mode, attributes (attr), follow, remote_src, _original_basename, backup, force, owner, serole, group, checksum, setype, validate, local_follow."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim myhosts.j2
+[student@workstation playbooks]$ vim hosts.yml
+[student@workstation playbooks]$ ansible-navigator run hosts.yml
+
+PLAY [etc hosts file configuration play] ***********************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [on dev group] ********************************************************************************************
+skipping: [serverb.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+changed: [servera.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible dev -a 'cat /etc/hosts'
+servera.lab.example.com | CHANGED | rc=0 >>
+127.0.0.1 localhost.localdomain localhost
+192.168.0.1 localhost.localdomain localdomain
+172.25.250.10 servera.lab.example.com servera
+172.25.250.11 serverb.lab.example.com serverb
+172.25.250.12 serverc.lab.example.com serverc
+172.25.250.13 serverd.lab.example.com serverd
+[student@workstation playbooks]$ vim hosts.yml
+[student@workstation playbooks]$ cat hosts.j2
+cat: hosts.j2: No such file or directory
+[student@workstation playbooks]$ cat myhosts.j2
+127.0.0.1 localhost.localdomain localhost
+192.168.0.1 localhost.localdomain localdomain
+{% for host in groups['all'] %}
+{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ hostvars[host]
+['ansible_facts']['fqdn'] }} {{ hostvars[host]['ansible_facts']['hostname'] }}
+{% endfor %}
+[student@workstation playbooks]$ vim myhosts.j2
+[student@workstation playbooks]$ cat myhosts.j2
+127.0.0.1 localhost.localdomain localhost
+192.168.0.1 localhost.localdomain localdomain
+{% for host in groups['all'] %}
+{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ hostvars[host]
+['ansible_facts']['fqdn'] }} {{ hostvars[host]['ansible_facts']['hostname'] }}
+{% endfor %}
+[student@workstation playbooks]$ vim hosts.yml
+[student@workstation playbooks]$ cat hosts.yml
+---
+- name: etc hosts file configuration play
+  hosts: all
+  tasks:
+   - name: on dev group
+     ansible.builtin.template:
+      src: myhosts.j2
+      dest: /etc/hosts
+     when: inventory_hostname in groups['dev']
+      
+      
+[student@workstation playbooks]$ vim vault.yml
+[student@workstation playbooks]$ vim vault.yml
+[student@workstation playbooks]$ vim secret.txt
+[student@workstation playbooks]$ ansible-vault encrypt vault.yml --vault-password-file=secret.txt
+Encryption successful
+[student@workstation playbooks]$ ansible-vault view  vault.yml --vault-password-file=secret.txt
+---
+pw_manager: lammgr
+pw_developer: lamdev
+[student@workstation playbooks]$ cat vault.yml
+$ANSIBLE_VAULT;1.1;AES256
+35303038326364633466346463663365306534313932626163353864613333323766663062383535
+6131383665396235306261663931666362373964383939610a396531313161366330626165383666
+64383664386634666439343134613765333032663831653338623539336361393564636262323161
+3665313764386530370a663262346666366630373162356666663135386433343537613331396631
+62396532636533373863383434303936323230616165393935383336303462623762356636653661
+6438396530316634343539653866393265376335303164663866
+[student@workstation playbooks]$ ansible-vault view  vault.yml --vault-password-file=secret.txt
+---
+pw_manager: lammgr
+pw_developer: lamdev
+[student@workstation playbooks]$ vim secret.txt
+[student@workstation playbooks]$ wget http://content.example.com/rhel9.0/x86_64/dvd/media.repo
+--2025-05-03 05:42:00--  http://content.example.com/rhel9.0/x86_64/dvd/media.repo
+Resolving content.example.com (content.example.com)... 172.25.254.254
+Connecting to content.example.com (content.example.com)|172.25.254.254|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 103
+Saving to: ‘media.repo’
+
+media.repo                  100%[===========================================>]     103  --.-KB/s    in 0s      
+
+2025-05-03 05:42:00 (5.13 MB/s) - ‘media.repo’ saved [103/103]
+
+[student@workstation playbooks]$ ls
+adhoc.sh     ansible-navigator.log  hosts.yml     issue.yml   packages.yml  secret.txt    webcontent.yml
+ansible9.0   ansible-navigator.yml  hwreport.yml  media.repo  roles         timesync.yml
+ansible.cfg  apache_role.yml        inventory     myhosts.j2  roles.yml     vault.yml
+[student@workstation playbooks]$ vim user_list.yml
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ an
+anacron                               ansible-playbook
+ansible                               ansible-pull
+ansible-builder                       ansible-runner
+ansible-config                        ansible-runner-3
+ansible-connection                    ansible-runner-3.9
+ansible-console                       ansible-test
+ansible-doc                           ansible-vault
+ansible-galaxy                        anthy-agent-unicode
+ansible-inventory                     anthy-dic-tool-unicode
+ansible-navigator                     anthy-morphological-analyzer-unicode
+[student@workstation playbooks]$ ansible-navigator run users.yml
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: gid, system, name, non_unique, local, state."}
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: local, state, system, name, non_unique, gid."}
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: non_unique, gid, name, system, local, state."}
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: state, system, gid, name, local, non_unique."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+ERROR! 'vars_file' is not a valid attribute for a Play
+
+The error appears to be in '/home/student/playbooks/users.yml': line 2, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+- name: user creation play
+  ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+ERROR! 'vars_file' is not a valid attribute for a Play
+
+The error appears to be in '/home/student/playbooks/users.yml': line 2, column 3, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+- name: user creation play
+  ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+ERROR! vars file vault.yml user_list.yml was not found
+Could not find file on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+Please review the log for errors.
+[student@workstation playbooks]$ ll
+total 152
+-rwxrwxr-x. 1 student student   510 May  3 01:42 adhoc.sh
+drwxrwxr-x. 3 student student   143 May  3 01:50 ansible9.0
+-rw-rw-r--. 1 student student   223 May  3 01:09 ansible.cfg
+-rw-rw-r--. 1 student student 80717 May  3 05:57 ansible-navigator.log
+-rw-rw-r--. 1 student student   214 May  3 02:25 ansible-navigator.yml
+-rw-rw-r--. 1 student student    75 May  3 02:41 apache_role.yml
+-rw-rw-r--. 1 student student   229 May  3 05:32 hosts.yml
+-rw-rw-r--. 1 student student  1005 May  3 04:43 hwreport.yml
+-rw-rw-r--. 1 student student   152 May  3 01:10 inventory
+-rw-rw-r--. 1 student student   720 May  3 05:13 issue.yml
+-rw-rw-r--. 1 student student   103 Apr 19  2022 media.repo
+-rw-rw-r--. 1 student student   295 May  3 05:31 myhosts.j2
+-rw-rw-r--. 1 student student   550 May  3 03:15 packages.yml
+drwxrwxr-x. 6 student student   109 May  3 02:56 roles
+-rw-rw-r--. 1 student student   164 May  3 02:46 roles.yml
+-rw-rw-r--. 1 student student     9 May  3 05:40 secret.txt
+-rw-rw-r--. 1 student student   192 May  3 03:01 timesync.yml
+-rw-rw-r--. 1 student student   305 May  3 05:45 user_list.yml
+-rw-rw-r--. 1 student student   652 May  3 05:57 users.yml
+-rw-------. 1 student student   484 May  3 05:37 vault.yml
+-rw-rw-r--. 1 student student   663 May  3 03:32 webcontent.yml
+[student@workstation playbooks]$ cat users.yml
+---
+- name: user creation play
+  hosts: all
+  vars_files:
+    - vault.yml
+      user_list.yml
+  tasks: 
+    - name: develops name creation
+      ansible.builtin.group:
+        name: devops
+        state: present
+        when: inventory_hostname in groups['dev'] or inventory_hostname in groups['balancers']
+    - name: user creation
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        groups: devops
+        uid: "{{item.id}}"
+        password: "{{pw_developer|password_hash('SHA512')}}"
+      when: item.job=='developer' and (inventory_hostname in groups['dev'] or inventory_hostname in groups['balancers'])
+      loop: "{{users}}"
+    
+[student@workstation playbooks]$ wq
+bash: wq: command not found...
+Failed to search for file: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer.
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: non_unique, system, local, name, state, gid."}
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: local, non_unique, state, name, gid, system."}
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: system, non_unique, gid, name, local, state."}
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.group) module: when. Supported parameters include: local, name, state, gid, system, non_unique."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ wq
+bash: wq: command not found...
+Failed to search for file: GDBus.Error:org.freedesktop.DBus.Error.NameHasNoOwner: Could not activate remote peer.
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+fatal: [servera.lab.example.com]: FAILED! => {"msg": "crypt.crypt does not support 'SHA512' algorithm. crypt.crypt does not support 'SHA512' algorithm"}
+fatal: [serverb.lab.example.com]: FAILED! => {"msg": "crypt.crypt does not support 'SHA512' algorithm. crypt.crypt does not support 'SHA512' algorithm"}
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+changed: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible dev -a 'tail /etc/passwd'
+servera.lab.example.com | CHANGED | rc=0 >>
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:988:988:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+student:x:1000:1000:Student User:/home/student:/bin/bash
+devops:x:1001:1001:Devops User:/home/devops:/bin/bash
+libstoragemgmt:x:987:986:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+nginx:x:986:985:Nginx web server:/var/lib/nginx:/sbin/nologin
+user1:x:1020:1020::/home/user1:/bin/bash
+user3:x:1022:1022::/home/user3:/bin/bash
+user4:x:1023:1023::/home/user4:/bin/bash
+[student@workstation playbooks]$ ansible dev -a 'tail /etc/group'
+servera.lab.example.com | CHANGED | rc=0 >>
+student:x:1000:
+devops:x:1001:user1,user3,user4
+printadmin:x:987:
+libstoragemgmt:x:986:
+slocate:x:21:
+apache:x:48:
+nginx:x:985:
+user1:x:1020:
+user3:x:1022:
+user4:x:1023:
+[student@workstation playbooks]$ ansible dev -a 'tail /etc/shadow'
+servera.lab.example.com | CHANGED | rc=0 >>
+tcpdump:!!:19115::::::
+systemd-oom:!*:19130::::::
+student:$6$8oIjLCsc$/n1iQXYh1E6.uOEuJKgioqAtmqm2TQmkJGF2RwyteIr1tIfrPdiRYgWe6Sjen5/eMij2uHM/a1tue/QRlo3X80:19130:0:99999:7:::
+devops:$6$MZcUmP2e$o/NaIlvKrcyaxSGHWtgmwbyokmvAkRnpZfBDTmDCj3KJ4eTu7datVXI31sBbRS6jq/raOOb2tERN/RsmwKbCa1:19130:0:99999:7:::
+libstoragemgmt:!!:19130::::::
+apache:!!:20211::::::
+nginx:!!:20211::::::
+user1:$6$U.roagv3yHoJf07d$TYKQX4JoMSYiexxdMAxqEbQwf7e6jyIEdWVWpunCinM.kn8hX1xFOX/G/t5h.K9kq9N6L8YQbUJqtRWoZTdCH.:20211:0:99999:7:::
+user3:$6$oMPABhfQBk4X9Rx1$z7P6FgDZa3qazap1QNNxnepWZTL11xNSKcOUcs6d.voIyMxlbkVWOjCstkKFjiqv391UO343/Ba49YYUmmFCL1:20211:0:99999:7:::
+user4:$6$fHOon2dtNiWy3O3S$qQRzVOrIJYYRQTozai6aHt21RIzQ/sfkr7dkWf1rdwYS1/QHRYELsq51xr.3aONKEsaMrivQVVJLpXFG8.SHm/:20211:0:99999:7:::
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverc.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+
+TASK [manager name creation] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+changed: [serverb.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021})
+skipping: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024})
+changed: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025})
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=5    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible dev -a 'tail /etc/passwd'
+servera.lab.example.com | CHANGED | rc=0 >>
+tcpdump:x:72:72::/:/sbin/nologin
+systemd-oom:x:988:988:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+student:x:1000:1000:Student User:/home/student:/bin/bash
+devops:x:1001:1001:Devops User:/home/devops:/bin/bash
+libstoragemgmt:x:987:986:daemon account for libstoragemgmt:/var/run/lsm:/sbin/nologin
+apache:x:48:48:Apache:/usr/share/httpd:/sbin/nologin
+nginx:x:986:985:Nginx web server:/var/lib/nginx:/sbin/nologin
+user1:x:1020:1020::/home/user1:/bin/bash
+user3:x:1022:1022::/home/user3:/bin/bash
+user4:x:1023:1023::/home/user4:/bin/bash
+[student@workstation playbooks]$ ansible dev -a 'tail /etc/shadow'
+servera.lab.example.com | CHANGED | rc=0 >>
+tcpdump:!!:19115::::::
+systemd-oom:!*:19130::::::
+student:$6$8oIjLCsc$/n1iQXYh1E6.uOEuJKgioqAtmqm2TQmkJGF2RwyteIr1tIfrPdiRYgWe6Sjen5/eMij2uHM/a1tue/QRlo3X80:19130:0:99999:7:::
+devops:$6$MZcUmP2e$o/NaIlvKrcyaxSGHWtgmwbyokmvAkRnpZfBDTmDCj3KJ4eTu7datVXI31sBbRS6jq/raOOb2tERN/RsmwKbCa1:19130:0:99999:7:::
+libstoragemgmt:!!:19130::::::
+apache:!!:20211::::::
+nginx:!!:20211::::::
+user1:$6$DX.OsCV8mMQ/XQTx$h/dr9wvd.9SICSaU.A6s78Ri1kX3Mc5BONg/rBcNiGyw6uLe3pmhpdYo80LH4vVJkfm6acNrpf6Wsdh8mVVoH1:20211:0:99999:7:::
+user3:$6$BpLaXivvcV4NUKhm$iFTZfY8IR176FFFJwTGwLbxA93pzsrqfjyAecAEQeBxJZPAGMCJ7ytA.TlUfhoUVoufpzKgj87gEVv7b4tS4p/:20211:0:99999:7:::
+user4:$6$ES3KyZaTxK3Z6luk$EsUbaGrR7z4qA2b7JTbBNMNjIM.5pMiY0aIwNMktblHNiU83u9ajOQOcqsf8pqi0taqNhny0UQsuz937ysAXC1:20211:0:99999:7:::
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+
+TASK [manager name creation] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021})
+skipping: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024})
+changed: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025})
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible dev -a 'tail /etc/shadow'
+servera.lab.example.com | CHANGED | rc=0 >>
+tcpdump:!!:19115::::::
+systemd-oom:!*:19130::::::
+student:$6$8oIjLCsc$/n1iQXYh1E6.uOEuJKgioqAtmqm2TQmkJGF2RwyteIr1tIfrPdiRYgWe6Sjen5/eMij2uHM/a1tue/QRlo3X80:19130:0:99999:7:::
+devops:$6$MZcUmP2e$o/NaIlvKrcyaxSGHWtgmwbyokmvAkRnpZfBDTmDCj3KJ4eTu7datVXI31sBbRS6jq/raOOb2tERN/RsmwKbCa1:19130:0:99999:7:::
+libstoragemgmt:!!:19130::::::
+apache:!!:20211::::::
+nginx:!!:20211::::::
+user1:$6$EqBYb2NEASklAGti$ybwwId8RrA.AzPwmGAmyv.71y8pSzferwnWdh2ec9t0U6wTdgiaK6w94IQ5JK4krFCNTn3RE9942hgL5cds2V/:20211:0:99999:7:::
+user3:$6$deA/.qA0W/fPp0RQ$vfdY6z5m5OeikdGpKGCtV.0SRWwCTFwhP24BVRrinvmGHDdaLGar/q0Yr66XgKFDcbX8FrQiMqmZo6juNA0.O0:20211:0:99999:7:::
+user4:$6$UyEcRE4XAQnTLwpY$IgImAo/7MuerrYhXZmouvVfs0Ia/tH9b3KnpxOHZCIFXQEmo1zG94TojfB8ph70lATvX/sIX0RoiQsBlCP2rN0:20211:0:99999:7:::
+[student@workstation playbooks]$ vim users.yml
+[student@workstation playbooks]$ ansible-navigator run users.yml --vault-password-file secret.txt
+
+PLAY [user creation play] **************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverc.lab.example.com]
+
+TASK [develops name creation] **********************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020})
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022})
+changed: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023})
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+
+TASK [manager name creation] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [user creation] *******************************************************************************************
+skipping: [servera.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [servera.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverc.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user1', 'job': 'developer', 'id': 1020}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024}) 
+skipping: [serverd.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user2', 'job': 'manager', 'id': 1021})
+skipping: [serverb.lab.example.com] => (item={'name': 'user3', 'job': 'developer', 'id': 1022}) 
+skipping: [serverb.lab.example.com] => (item={'name': 'user4', 'job': 'developer', 'id': 1023}) 
+changed: [serverb.lab.example.com] => (item={'name': 'user5', 'job': 'manager', 'id': 1024})
+changed: [serverb.lab.example.com] => (item={'name': 'user6', 'job': 'manager', 'id': 1025})
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible balancer -a 'tail /etc/shadow'
+[WARNING]: Could not match supplied host pattern, ignoring: balancer
+[WARNING]: No hosts matched, nothing to do
+[student@workstation playbooks]$ ansible balancers -a 'tail /etc/shadow'
+serverb.lab.example.com | CHANGED | rc=0 >>
+student:$6$8oIjLCsc$/n1iQXYh1E6.uOEuJKgioqAtmqm2TQmkJGF2RwyteIr1tIfrPdiRYgWe6Sjen5/eMij2uHM/a1tue/QRlo3X80:19130:0:99999:7:::
+devops:$6$MZcUmP2e$o/NaIlvKrcyaxSGHWtgmwbyokmvAkRnpZfBDTmDCj3KJ4eTu7datVXI31sBbRS6jq/raOOb2tERN/RsmwKbCa1:19130:0:99999:7:::
+libstoragemgmt:!!:19130::::::
+haproxy:!!:20211::::::
+user1:$6$5ZCl85ATtgV7WjMj$xCcUYlX8XAiLX9jI9hP0oXEvjFS42zlmLupKo13hxBIAhU.LHKeT2QwZZlTXfA9RiXSU.NDiKQ3CuIW2s9pLD0:20211:0:99999:7:::
+user3:$6$cuKOK72QV3xsTJ1V$4.sHIgqqFGoJtA8mciCRz8QEHiHV8gkWn08ZQ0xY5yDSZEnVo06aUvq6rL8ZicrHbbXFnsJLqhOxBqUq0rlsI/:20211:0:99999:7:::
+user4:$6$2prTeNMz9XYOeIHY$z1WyRtsQJPB6YynoJUVmCOuJuQlFQMMa1XesV7mGf1YsOIObdRneKBVikOPXfURr7C3Id7K9XD1SjFZ3KpC6I.:20211:0:99999:7:::
+user2:$6$.cgQyoB11HcLl5u/$mAKLaJ6T6cO0Cg0Sk0RwLdqEckuB3AuZ.MDMmsYN6wPYWctR3XAQcFhN3PSUcea99QhuunHHRKGm7MjdzT49M0:20211:0:99999:7:::
+user5:$6$h0.TTWjTPIxwhtBt$1Gxl/WI/UiHhpQtPHn8Ts9FGloacK8EvYps7M5/XOAH/jGXsyVK3tTLPb4PLzc21.sXbOyoLGVg25HADhwuR41:20211:0:99999:7:::
+user6:$6$fuVOUvYFyl3Xr/eN$Nrlof67hXqZFffD8SApjrWR/5rrIw4w4bY8DImIawypqRKaFS4BdxLknrJd.B0jy0JWt3UGZrRZEvFKdPME7a1:20211:0:99999:7:::
+[student@workstation playbooks]$ cat users.yml
+---
+- name: user creation play
+  hosts: all
+  vars_files:
+    - vault.yml
+    - user_list.yml
+  tasks: 
+    - name: develops name creation
+      ansible.builtin.group:
+        name: devops
+        state: present
+      when: inventory_hostname in groups['dev'] or inventory_hostname in groups['balancers']
+    - name: user creation
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        groups: devops
+        uid: "{{item.id}}"
+        password: "{{pw_developer|password_hash('sha512')}}"
+      when: item.job=='developer' and (inventory_hostname in groups['dev'] or inventory_hostname in groups['balancers'])
+      loop: "{{users}}"
+    - name: manager name creation
+      ansible.builtin.group:
+        name: manager
+        state: present
+      when: inventory_hostname in groups['balancers']
+    - name: user creation
+      ansible.builtin.user:
+        name: "{{item.name}}"
+        groups: manager
+        uid: "{{item.id}}"
+        password: "{{pw_manager|password_hash('sha512')}}"
+      when: item.job=='manager' and inventory_hostname in groups['balancers']
+      loop: "{{users}}"
+[student@workstation playbooks]$ cat user_list.yml
+---
+users:
+  - name: user1
+    job: developer
+    id: 1020
+  - name: user2
+    job : manager
+    id: 1021
+  - name: user3
+    job: developer
+    id: 1022
+  - name: user4   
+    job: developer
+    id: 1023
+  - name: user5   
+    job : manager 
+    id: 1024
+  - name: user6   
+    job: manager
+    id: 1025
+[student@workstation playbooks]$ vim solaris.yml
+[student@workstation playbooks]$ ansible-vault encrypt solaris.yml
+New Vault password: 
+Confirm New Vault password: 
+Encryption successful
+[student@workstation playbooks]$ ansible-vault rekey solaris.yml
+Vault password: 
+New Vault password: 
+Confirm New Vault password: 
+Rekey successful
+[student@workstation playbooks]$ ssh root@servera
+Warning: Permanently added 'servera' (ED25519) to the list of known hosts.
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+[root@servera ~]# cd /dev/vdb
+-bash: cd: /dev/vdb: Not a directory
+[root@servera ~]# fdisk /dev/vdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x58915a2d.
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): 
+
+Using default response p.
+Partition number (1-4, default 1): 
+First sector (2048-2097151, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2097151, default 2097151): 
+
+Created a new partition 1 of type 'Linux' and of size 1023 MiB.
+
+Command (m for help): t
+Selected partition 1
+Hex code or alias (type L to list all): lvm
+Changed type of partition 'Linux' to 'Linux LVM'.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@servera ~]# partprobe
+[root@servera ~]# vg create research /dev/vdb
+-bash: vg: command not found
+[root@servera ~]# vgcreate research /dev/vdb
+  Cannot use /dev/vdb: device is partitioned
+  Command requires all devices to be found.
+[root@servera ~]# lvs
+[root@servera ~]# lvgs
+-bash: lvgs: command not found
+[root@servera ~]# vgs
+[root@servera ~]# vgcreate research /dev/vdb1
+  Physical volume "/dev/vdb1" successfully created.
+  Creating devices file /etc/lvm/devices/system.devices
+  Volume group "research" successfully created
+[root@servera ~]# lgs
+-bash: lgs: command not found
+[root@servera ~]# vgs
+  VG       #PV #LV #SN Attr   VSize    VFree   
+  research   1   0   0 wz--n- 1020.00m 1020.00m
+[root@servera ~]# exit
+logout
+Connection to servera closed.
+[student@workstation playbooks]$ ssh root@serverb
+Warning: Permanently added 'serverb' (ED25519) to the list of known hosts.
+Activate the web console with: systemctl enable --now cockpit.socket
+
+Register this system with Red Hat Insights: insights-client --register
+Create an account or view all your systems at https://red.ht/insights-dashboard
+[root@serverb ~]# fdisk /dev/vdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Device does not contain a recognized partition table.
+Created a new DOS disklabel with disk identifier 0x1b77bd34.
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): n
+Value out of range.
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): 
+
+Using default response p.
+Partition number (1-4, default 1): 
+First sector (2048-2097151, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2097151, default 2097151): +512
+
+Created a new partition 1 of type 'Linux' and of size 256.5 KiB.
+
+Command (m for help): t
+Selected partition 1
+Hex code or alias (type L to list all): lvm
+Changed type of partition 'Linux' to 'Linux LVM'.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@serverb ~]# pathprobe
+-bash: pathprobe: command not found
+[root@serverb ~]# partprobe 
+[root@serverb ~]# vgcreate search /dev/vdp1
+  No device found for /dev/vdp1.
+[root@serverb ~]# vgcreate search /dev/vdb1
+  Cannot use /dev/vdb1: device is too small (pv_min_size)
+  Command requires all devices to be found.
+[root@serverb ~]# vgcreate research /dev/vdb1
+  Cannot use /dev/vdb1: device is too small (pv_min_size)
+  Command requires all devices to be found.
+[root@serverb ~]# fdisk /dev/vdb
+
+Welcome to fdisk (util-linux 2.37.4).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help): d
+Selected partition 1
+Partition 1 has been deleted.
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): 
+
+Using default response p.
+Partition number (1-4, default 1): 
+First sector (2048-2097151, default 2048): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-2097151, default 2097151): +512MB
+
+Created a new partition 1 of type 'Linux' and of size 488 MiB.
+
+Command (m for help): t
+Selected partition 1
+Hex code or alias (type L to list all): lvm
+Changed type of partition 'Linux' to 'Linux LVM'.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@serverb ~]# partprobe
+[root@serverb ~]# vgcreate research /dev/vdb1
+  Physical volume "/dev/vdb1" successfully created.
+  Creating devices file /etc/lvm/devices/system.devices
+  Volume group "research" successfully created
+[root@serverb ~]# exit
+logout
+Connection to serverb closed.
+[student@workstation playbooks]$ vim lvm.yml
+[student@workstation playbooks]$ ansible-navigator run lvm.yml
+
+PLAY [lv creation data] ****************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [finding vg] **********************************************************************************************
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.020931", "end": "2025-05-03 06:32:17.241644", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:32:17.220713", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [servera.lab.example.com]
+changed: [serverb.lab.example.com]
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.022833", "end": "2025-05-03 06:32:17.261927", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:32:17.239094", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+ok: [serverc.lab.example.com] => {
+    "msg": "vg not found"
+}
+ok: [serverd.lab.example.com] => {
+    "msg": "vg not found"
+}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+serverd.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+
+[student@workstation playbooks]$ vim lvm.yml
+[student@workstation playbooks]$ ansible-navigator run lvm.yml
+
+PLAY [lv creation data] ****************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+ok: [serverb.lab.example.com]
+
+TASK [finding vg] **********************************************************************************************
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.022799", "end": "2025-05-03 06:37:34.989155", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:37:34.966356", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.024467", "end": "2025-05-03 06:37:34.987731", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:37:34.963264", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [servera.lab.example.com]
+changed: [serverb.lab.example.com]
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+ok: [serverc.lab.example.com] => {
+    "msg": "vg not found"
+}
+ok: [serverd.lab.example.com] => {
+    "msg": "vg not found"
+}
+
+TASK [lv creation 1G] ******************************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "900MB", "/dev/research"], "delta": "0:00:00.025948", "end": "2025-05-03 06:37:35.551660", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:37:35.525712", "stderr": "  Volume group \"research\" has insufficient free space (121 extents): 225 required.", "stderr_lines": ["  Volume group \"research\" has insufficient free space (121 extents): 225 required."], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [servera.lab.example.com]
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+skipping: [servera.lab.example.com]
+ok: [serverb.lab.example.com] => {
+    "msg": "insufficient size of vg"
+}
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=3    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=4    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+serverc.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=1   
+serverd.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=2    rescued=0    ignored=1   
+
+[student@workstation playbooks]$ ansible all -a 'lsvlk'
+servera.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+serverb.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+serverc.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+serverd.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+[student@workstation playbooks]$ ansible all -a 'lsvlk'
+serverc.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+serverb.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+servera.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+serverd.lab.example.com | FAILED | rc=2 >>
+[Errno 2] No such file or directory: b'lsvlk'
+[student@workstation playbooks]$ ansible all -a 'lsblk'
+serverb.lab.example.com | CHANGED | rc=0 >>
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda    252:0    0   10G  0 disk 
+├─vda1 252:1    0    1M  0 part 
+├─vda2 252:2    0  200M  0 part /boot/efi
+├─vda3 252:3    0  500M  0 part /boot
+└─vda4 252:4    0  9.3G  0 part /
+vdb    252:16   0    1G  0 disk 
+└─vdb1 252:17   0  488M  0 part 
+serverc.lab.example.com | CHANGED | rc=0 >>
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda    252:0    0   10G  0 disk 
+├─vda1 252:1    0    1M  0 part 
+├─vda2 252:2    0  200M  0 part /boot/efi
+├─vda3 252:3    0  500M  0 part /boot
+└─vda4 252:4    0  9.3G  0 part /
+vdb    252:16   0    1G  0 disk 
+servera.lab.example.com | CHANGED | rc=0 >>
+NAME              MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda               252:0    0   10G  0 disk 
+├─vda1            252:1    0    1M  0 part 
+├─vda2            252:2    0  200M  0 part /boot/efi
+├─vda3            252:3    0  500M  0 part /boot
+└─vda4            252:4    0  9.3G  0 part /
+vdb               252:16   0    1G  0 disk 
+└─vdb1            252:17   0 1023M  0 part 
+  └─research-data 253:0    0  900M  0 lvm  
+serverd.lab.example.com | CHANGED | rc=0 >>
+NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINTS
+vda    252:0    0   10G  0 disk 
+├─vda1 252:1    0    1M  0 part 
+├─vda2 252:2    0  200M  0 part /boot/efi
+├─vda3 252:3    0  500M  0 part /boot
+└─vda4 252:4    0  9.3G  0 part /
+vdb    252:16   0    1G  0 disk 
+[student@workstation playbooks]$ ansible all -a 'vgs'
+serverc.lab.example.com | CHANGED | rc=0 >>
+
+serverd.lab.example.com | CHANGED | rc=0 >>
+
+servera.lab.example.com | CHANGED | rc=0 >>
+  VG       #PV #LV #SN Attr   VSize    VFree  
+  research   1   1   0 wz--n- 1020.00m 120.00m
+serverb.lab.example.com | CHANGED | rc=0 >>
+  VG       #PV #LV #SN Attr   VSize   VFree  
+  research   1   0   0 wz--n- 484.00m 484.00m
+[student@workstation playbooks]$ vim lvm.yml
+[student@workstation playbooks]$ ansible-navigator run lvm.yml
+
+PLAY [lv creation data] ****************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [finding vg] **********************************************************************************************
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.020138", "end": "2025-05-03 06:41:46.598394", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:41:46.578256", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [servera.lab.example.com]
+changed: [serverb.lab.example.com]
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.023821", "end": "2025-05-03 06:41:46.622589", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:41:46.598768", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+ok: [serverc.lab.example.com] => {
+    "msg": "vg not found"
+}
+ok: [serverd.lab.example.com] => {
+    "msg": "vg not found"
+}
+
+TASK [lv creation 1G] ******************************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+fatal: [servera.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "900MB", "/dev/research"], "delta": "0:00:00.022888", "end": "2025-05-03 06:41:47.118207", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:41:47.095319", "stderr": "  Logical Volume \"data\" already exists in volume group \"research\"", "stderr_lines": ["  Logical Volume \"data\" already exists in volume group \"research\""], "stdout": "", "stdout_lines": []}
+...ignoring
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "900MB", "/dev/research"], "delta": "0:00:00.029155", "end": "2025-05-03 06:41:47.156197", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:41:47.127042", "stderr": "  Volume group \"research\" has insufficient free space (121 extents): 225 required.", "stderr_lines": ["  Volume group \"research\" has insufficient free space (121 extents): 225 required."], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+ok: [servera.lab.example.com] => {
+    "msg": "insufficient size of vg"
+}
+skipping: [serverc.lab.example.com]
+ok: [serverb.lab.example.com] => {
+    "msg": "insufficient size of vg"
+}
+skipping: [serverd.lab.example.com]
+
+TASK [lv created 400MB] ****************************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+fatal: [servera.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "400MB", "/dev/research"], "delta": "0:00:00.026269", "end": "2025-05-03 06:41:47.647705", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:41:47.621436", "stderr": "  Logical Volume \"data\" already exists in volume group \"research\"", "stderr_lines": ["  Logical Volume \"data\" already exists in volume group \"research\""], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [serverb.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=5    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=2   
+serverb.lab.example.com    : ok=5    changed=3    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+serverc.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=1   
+serverd.lab.example.com    : ok=3    changed=1    unreachable=0    failed=0    skipped=3    rescued=0    ignored=1   
+
+[student@workstation playbooks]$ ansible all -a 'lvs'
+serverb.lab.example.com | CHANGED | rc=0 >>
+  LV   VG       Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  data research -wi-a----- 400.00m                                                    
+servera.lab.example.com | CHANGED | rc=0 >>
+  LV   VG       Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
+  data research -wi-a----- 900.00m                                                    
+serverd.lab.example.com | CHANGED | rc=0 >>
+
+serverc.lab.example.com | CHANGED | rc=0 >>
+
+[student@workstation playbooks]$ vim lvm.yml
+[student@workstation playbooks]$ vim lvm.yml
+[student@workstation playbooks]$ ansible-navigator run lvm.yml
+
+PLAY [lv creation data] ****************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [finding vg] **********************************************************************************************
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.021149", "end": "2025-05-03 06:46:34.195698", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:46:34.174549", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [serverb.lab.example.com]
+changed: [servera.lab.example.com]
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": true, "cmd": ["vgdisplay", "research"], "delta": "0:00:00.024597", "end": "2025-05-03 06:46:34.230218", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:46:34.205621", "stderr": "  Volume group \"research\" not found\n  Cannot process volume group research", "stderr_lines": ["  Volume group \"research\" not found", "  Cannot process volume group research"], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+skipping: [servera.lab.example.com]
+skipping: [serverb.lab.example.com]
+ok: [serverc.lab.example.com] => {
+    "msg": "vg not found"
+}
+ok: [serverd.lab.example.com] => {
+    "msg": "vg not found"
+}
+
+TASK [lv creation 1G] ******************************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "900MB", "/dev/research"], "delta": "0:00:00.024164", "end": "2025-05-03 06:46:34.789265", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:46:34.765101", "stderr": "  Logical Volume \"data\" already exists in volume group \"research\"", "stderr_lines": ["  Logical Volume \"data\" already exists in volume group \"research\""], "stdout": "", "stdout_lines": []}
+...ignoring
+fatal: [servera.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "900MB", "/dev/research"], "delta": "0:00:00.034595", "end": "2025-05-03 06:46:34.820469", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:46:34.785874", "stderr": "  Logical Volume \"data\" already exists in volume group \"research\"", "stderr_lines": ["  Logical Volume \"data\" already exists in volume group \"research\""], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [ansible.builtin.debug] ***********************************************************************************
+ok: [servera.lab.example.com] => {
+    "msg": "insufficient size of vg"
+}
+ok: [serverb.lab.example.com] => {
+    "msg": "insufficient size of vg"
+}
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+
+TASK [lv created 400MB] ****************************************************************************************
+skipping: [serverc.lab.example.com]
+skipping: [serverd.lab.example.com]
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "400MB", "/dev/research"], "delta": "0:00:00.029987", "end": "2025-05-03 06:46:35.369823", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:46:35.339836", "stderr": "  Logical Volume \"data\" already exists in volume group \"research\"", "stderr_lines": ["  Logical Volume \"data\" already exists in volume group \"research\""], "stdout": "", "stdout_lines": []}
+...ignoring
+fatal: [servera.lab.example.com]: FAILED! => {"changed": true, "cmd": ["lvcreate", "-n", "data", "-L", "400MB", "/dev/research"], "delta": "0:00:00.029105", "end": "2025-05-03 06:46:35.400747", "msg": "non-zero return code", "rc": 5, "start": "2025-05-03 06:46:35.371642", "stderr": "  Logical Volume \"data\" already exists in volume group \"research\"", "stderr_lines": ["  Logical Volume \"data\" already exists in volume group \"research\""], "stdout": "", "stdout_lines": []}
+...ignoring
+
+TASK [make file system] ****************************************************************************************
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": true, "cmd": ["mkfs.ext3", "/dev/research/data"], "delta": "0:00:00.016308", "end": "2025-05-03 06:46:35.833811", "msg": "non-zero return code", "rc": 1, "start": "2025-05-03 06:46:35.817503", "stderr": "mke2fs 1.46.5 (30-Dec-2021)\nThe file /dev/research/data does not exist and no size was specified.", "stderr_lines": ["mke2fs 1.46.5 (30-Dec-2021)", "The file /dev/research/data does not exist and no size was specified."], "stdout": "", "stdout_lines": []}
+...ignoring
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": true, "cmd": ["mkfs.ext3", "/dev/research/data"], "delta": "0:00:00.022884", "end": "2025-05-03 06:46:35.868993", "msg": "non-zero return code", "rc": 1, "start": "2025-05-03 06:46:35.846109", "stderr": "mke2fs 1.46.5 (30-Dec-2021)\nThe file /dev/research/data does not exist and no size was specified.", "stderr_lines": ["mke2fs 1.46.5 (30-Dec-2021)", "The file /dev/research/data does not exist and no size was specified."], "stdout": "", "stdout_lines": []}
+...ignoring
+changed: [servera.lab.example.com]
+changed: [serverb.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=6    changed=4    unreachable=0    failed=0    skipped=1    rescued=0    ignored=2   
+serverb.lab.example.com    : ok=6    changed=4    unreachable=0    failed=0    skipped=1    rescued=0    ignored=2   
+serverc.lab.example.com    : ok=4    changed=2    unreachable=0    failed=0    skipped=3    rescued=0    ignored=2   
+serverd.lab.example.com    : ok=4    changed=2    unreachable=0    failed=0    skipped=3    rescued=0    ignored=2   
+
+[student@workstation playbooks]$ ansible all vlkid
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+ansible: error: unrecognized arguments: vlkid
+ 
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD] [--become-user BECOME_USER]
+               [-K | --become-password-file BECOME_PASSWORD_FILE] [-i INVENTORY] [--list-hosts] [-l SUBSET]
+               [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [--private-key PRIVATE_KEY_FILE]
+               [-u REMOTE_USER] [-c CONNECTION] [-T TIMEOUT] [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS] [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-k | --connection-password-file CONNECTION_PASSWORD_FILE]
+               [-C] [--syntax-check] [-D] [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-password | --vault-password-file VAULT_PASSWORD_FILES] [-f FORKS] [-M MODULE_PATH]
+               [--playbook-dir BASEDIR] [--task-timeout TASK_TIMEOUT] [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-password, --ask-vault-pass
+                        ask for vault password
+  --become-password-file BECOME_PASSWORD_FILE, --become-pass-file BECOME_PASSWORD_FILE
+                        Become password file
+  --connection-password-file CONNECTION_PASSWORD_FILE, --conn-pass-file CONNECTION_PASSWORD_FILE
+                        Connection password file
+  --list-hosts          outputs a list of matching hosts; does not execute anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a substitute playbook directory.
+                        This sets the relative path for many features including roles/ group_vars/ etc.
+  --syntax-check        perform a syntax check on the playbook, but do not execute it
+  --task-timeout TASK_TIMEOUT
+                        set task timeout limit in seconds, must be positive integer.
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES, --vault-pass-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location, configured module search path,
+                        module location, executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the differences in those files; works
+                        great with --check
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library
+                        (default=~/.ansible/plugins/modules:/usr/share/ansible/plugins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        The action's options in space separated k=v format: -a 'opt1=val1 opt2=val2'
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host list. --inventory-file is
+                        deprecated
+  -k, --ask-pass        ask for connection password
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        Name of the action to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         Causes Ansible to print more debug messages. Adding multiple -v will increase the
+                        verbosity, the builtin plugins currently evaluate up to -vvvvvv. A reasonable level to
+                        start is -vvv, connection debugging might require -vvvv.
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use `ansible-doc -t become -l` to
+                        list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -b, --become          run operations with become (does not imply password prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f, -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g. ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=devops)
+
+Some actions do not make sense in Ad-Hoc (include, meta, etc)
+[student@workstation playbooks]$ ansible all -a 'blkid'
+serverb.lab.example.com | CHANGED | rc=0 >>
+/dev/vdb1: UUID="QN3G0X-39lB-KxxV-RF5g-3qmJ-R2Cw-AfZp3S" TYPE="LVM2_member" PARTUUID="1b77bd34-01"
+/dev/mapper/research-data: UUID="cbc157cf-009a-4a31-beed-2525b8d4f8d6" SEC_TYPE="ext2" BLOCK_SIZE="1024" TYPE="ext3"
+/dev/vda4: LABEL="root" UUID="fb535add-9799-4a27-b8bc-e8259f39a767" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562"
+/dev/vda2: SEC_TYPE="msdos" UUID="7B77-95E7" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="68b2905b-df3e-4fb3-80fa-49d1e773aa33"
+/dev/vda3: LABEL="boot" UUID="5e75a2b9-1367-4cc8-bb38-4d6abc3964b8" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="cb07c243-bc44-4717-853e-28852021225b"
+/dev/vda1: PARTUUID="fac7f1fb-3e8d-4137-a512-961de09a5549"
+serverc.lab.example.com | CHANGED | rc=0 >>
+/dev/vda4: LABEL="root" UUID="fb535add-9799-4a27-b8bc-e8259f39a767" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562"
+/dev/vda2: SEC_TYPE="msdos" UUID="7B77-95E7" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="68b2905b-df3e-4fb3-80fa-49d1e773aa33"
+/dev/vda3: LABEL="boot" UUID="5e75a2b9-1367-4cc8-bb38-4d6abc3964b8" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="cb07c243-bc44-4717-853e-28852021225b"
+/dev/vda1: PARTUUID="fac7f1fb-3e8d-4137-a512-961de09a5549"
+servera.lab.example.com | CHANGED | rc=0 >>
+/dev/vdb1: UUID="HqpSuU-9GVw-LZkC-GeAm-aLDF-E5CC-FXQ31o" TYPE="LVM2_member" PARTUUID="58915a2d-01"
+/dev/mapper/research-data: UUID="74ccdefc-d3e4-44ba-8a0f-0fbf235866ef" SEC_TYPE="ext2" BLOCK_SIZE="4096" TYPE="ext3"
+/dev/vda4: LABEL="root" UUID="fb535add-9799-4a27-b8bc-e8259f39a767" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562"
+/dev/vda2: SEC_TYPE="msdos" UUID="7B77-95E7" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="68b2905b-df3e-4fb3-80fa-49d1e773aa33"
+/dev/vda3: LABEL="boot" UUID="5e75a2b9-1367-4cc8-bb38-4d6abc3964b8" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="cb07c243-bc44-4717-853e-28852021225b"
+/dev/vda1: PARTUUID="fac7f1fb-3e8d-4137-a512-961de09a5549"
+serverd.lab.example.com | CHANGED | rc=0 >>
+/dev/vda4: LABEL="root" UUID="fb535add-9799-4a27-b8bc-e8259f39a767" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="6264d520-3fb9-423f-8ab8-7a0a8e3d3562"
+/dev/vda2: SEC_TYPE="msdos" UUID="7B77-95E7" BLOCK_SIZE="512" TYPE="vfat" PARTUUID="68b2905b-df3e-4fb3-80fa-49d1e773aa33"
+/dev/vda3: LABEL="boot" UUID="5e75a2b9-1367-4cc8-bb38-4d6abc3964b8" BLOCK_SIZE="512" TYPE="xfs" PARTUUID="cb07c243-bc44-4717-853e-28852021225b"
+/dev/vda1: PARTUUID="fac7f1fb-3e8d-4137-a512-961de09a5549"
+[student@workstation playbooks]$ ansible all -m user -a 'name=natasha state=present'
+serverc.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1002,
+    "home": "/home/natasha",
+    "name": "natasha",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1002
+}
+serverb.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1027,
+    "home": "/home/natasha",
+    "name": "natasha",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1026
+}
+servera.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1024,
+    "home": "/home/natasha",
+    "name": "natasha",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1024
+}
+serverd.lab.example.com | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1002,
+    "home": "/home/natasha",
+    "name": "natasha",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 1002
+}
+[student@workstation playbooks]$ vim cron.yml
+[student@workstation playbooks]$ ansible-navigator run cron.yml 
+
+PLAY [cron job creation for natasha user] **********************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [cron job natasha] ****************************************************************************************
+fatal: [serverc.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.cron) module: command, minutes. Supported parameters include: month, name, special_time, hour, state, backup, day (dom), job (value), env, cron_file, insertafter, minute, weekday (dow), insertbefore, user, disabled."}
+fatal: [serverb.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.cron) module: command, minutes. Supported parameters include: cron_file, hour, disabled, job (value), month, state, day (dom), weekday (dow), special_time, minute, name, user, insertafter, backup, env, insertbefore."}
+fatal: [servera.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.cron) module: command, minutes. Supported parameters include: weekday (dow), special_time, job (value), minute, env, month, name, state, insertbefore, hour, cron_file, disabled, day (dom), user, insertafter, backup."}
+fatal: [serverd.lab.example.com]: FAILED! => {"changed": false, "msg": "Unsupported parameters for (ansible.builtin.cron) module: command, minutes. Supported parameters include: backup, hour, user, weekday (dow), cron_file, day (dom), disabled, insertafter, insertbefore, minute, job (value), month, env, name, state, special_time."}
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+Please review the log for errors.
+[student@workstation playbooks]$ vim cron.yml
+[student@workstation playbooks]$ ansible-navigator run cron.yml 
+ERROR! couldn't resolve module/action 'ansible.builtin.crontab'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/cron.yml': line 5, column 7, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  tasks:
+    - name: cron job natasha
+      ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim cron.yml
+[student@workstation playbooks]$ ansible-navigator run cron.yml 
+ERROR! couldn't resolve module/action 'ansible.builtin.crontab'. This often indicates a misspelling, missing collection, or incorrect module path.
+
+The error appears to be in '/home/student/playbooks/cron.yml': line 5, column 7, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+  tasks:
+    - name: cron job natasha
+      ^ here
+Please review the log for errors.
+[student@workstation playbooks]$ vim cron.yml
+[student@workstation playbooks]$ ansible-navigator run cron.yml 
+
+PLAY [cron job creation for natasha user] **********************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************
+ok: [serverc.lab.example.com]
+ok: [serverd.lab.example.com]
+ok: [serverb.lab.example.com]
+ok: [servera.lab.example.com]
+
+TASK [cron job natasha] ****************************************************************************************
+changed: [serverc.lab.example.com]
+changed: [serverb.lab.example.com]
+changed: [serverd.lab.example.com]
+changed: [servera.lab.example.com]
+
+PLAY RECAP *****************************************************************************************************
+servera.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverb.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverc.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+serverd.lab.example.com    : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[student@workstation playbooks]$ ansible all -a 'crontab -lu natasha'
+serverc.lab.example.com | CHANGED | rc=0 >>
+#Ansible: crontab
+*/1 * * * * echo "welome RSCE example in progress"
+servera.lab.example.com | CHANGED | rc=0 >>
+#Ansible: crontab
+*/1 * * * * echo "welome RSCE example in progress"
+serverb.lab.example.com | CHANGED | rc=0 >>
+#Ansible: crontab
+*/1 * * * * echo "welome RSCE example in progress"
+serverd.lab.example.com | CHANGED | rc=0 >>
+#Ansible: crontab
+*/1 * * * * echo "welome RSCE example in progress"
 [student@workstation playbooks]$ 
