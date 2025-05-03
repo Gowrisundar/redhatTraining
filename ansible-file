@@ -308,3 +308,35 @@ ansible-navigator run issue.yml
 
 ansible all -a 'cat /etc/issue'
 
+question 12:
+
+wget to download (wget http://xxxxx)
+
+myhosts.j2
+127.0.0.1 localhost.localdomain localhost
+192.168.0.1 localhost.localdomain localdomain
+{% for host in groups['all'] %}
+{{ hostvars[host]['ansible_facts']['default_ipv4']['address'] }} {{ hostvars[host]
+['ansible_facts']['fqdn'] }} {{ hostvars[host]['ansible_facts']['hostname'] }}
+{% endfor %}
+
+hosts.yml
+
+---
+- name: etc hosts file configuration play
+  hosts: all
+  tasks:
+   - name: on dev group
+     ansible.builtin.template:
+      src: myhosts.j2
+      dest: /etc/hosts
+     when: inventory_hostname in groups['dev']
+
+ansible-navigator run hosts.yml
+
+ansible dev -a 'cat /etc/hosts'
+
+question 13:
+
+
+
