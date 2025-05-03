@@ -214,6 +214,42 @@ ansible-navigator run packages.yml
 question: 9
 
 webcontent.yml
+
+--
+- name: webdev directory creation and configuration
+  hosts: dev
+  tasks: 
+  - name: webdev directory creation
+    ansible.builtin.file:
+      path: /webdev
+      group: devops
+      mode: u=rxx,g=rxx,o=rx,g=g+s
+      setype: httpd_sys_content_t
+      recurse: yes
+      state: directory
+      force: yes
+  - name: index file creation
+    ansible.builtin.file:
+      path: /webdev/index.html
+      state: touch
+  - name: index file configure
+    ansible.builtin.copy:
+      content: "Development"
+      dest: /webdev/index.html
+  - name: create a link
+    ansible.builtin.file:
+      src: /webdev/index.html
+      dest: /var/www/html/webdev
+      state: link
+ansible-navigatory run webcontent.yml
+
+curl servera/webcontent
+
+Question: 10
+
+
+
+---
 ---
 - name: hw report generate reprot on all host
   hosts: all
@@ -239,41 +275,6 @@ webcontent.yml
         CPU= "{{CPU|default(NONE)}}"
         VDA_DISK_SIZE= "{{VDA_DISK_SIZE|default(NONE)}}"
         VDB_DISK_SIZE= "{{VDB_DISK_SIZE|default(NONE)}}"
-      dest: /root/hwreport.txt
-
-ansible-navigatory run webcontent.yml
-
-curl servera/webcontent
-
-Question: 10
-
-
-
----
-- name: hw report generate reprot on all host
-  hosts: all
-  tasks:
-  - name: download file from the url
-    ansible.builtin.get_url:
-      url: http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release
-      dest: /root/hwreport.txt
-  - name: gathering report on all hosts
-    ansible.builtin.set_fact:
-      HOSTNAME: "{{ansible_facts['hostname']}}"
-      BIOS: "{{ansible_bios_version}}"
-      MEMORY: "{{ansible_memtotal_mb}}"
-      CPU: "{{ansible_processor_vcpus}}"
-      VDA_DISK_SIZE: "{{ansible_facts['devices']['vda']['size']}}"
-      VDB_DISK_SIZE: "{{ansible_facts['devices']['vdb']['size']}}"
-  - name: copying content
-    ansible.builtin.copy:
-      content: |
-        HOSTNAME= "{{HOSTNAME}}"
-        BIOS= "{{BIOS}}"
-        MEMORY= "{{MEMORY}}"
-        CPU= "{{CPU}}"
-        VDA_DISK_SIZE= "{{VDA_DISK_SIZE}}"
-        VDB_DISK_SIZE= "{{VDB_DISK_SIZE}}"
       dest: /root/hwreport.txt
 
 
