@@ -1,0 +1,72 @@
+#redhat training ansible
+
+/home/student/playbooks
+
+ansible.cfg
+inventory=/home/student/playbooks/inventory
+remote_user=devops
+ask_pass=false
+roles_path=/home/student/playbooks/roles
+[privilege_escalation]
+become=true
+become_user=root
+become_method=sudo
+become_ask_pass=false
+
+inventory
+[dev]
+servera.lab.example.com
+
+[balancers]
+serverb.lab.example.com
+
+[prod]
+serverc.lab.example.com
+serverd.lab.example.com
+
+[webservers:children]
+prod
+
+
+ansible-navigatory.yml
+
+---
+  ansible-navigatory:
+    execution-environment:
+      image: utility.lab.example.com/ee-supported/li:latest
+      pull:
+        policy: missing
+    playbook-artifact:
+        enable: false
+    mode: stdout
+
+switch user to install package
+
+su - root
+pass: redhat
+
+dnf install ansible 'id'
+
+==========================
+
+question 2:
+
+adhoc.sh
+
+#!/bin/bash
+ansible all -m yum_repository -a 'name=baseos description="baseos description" baseurl=http://content.example.com/rhel9.0/x86_64/dvd/BaseOS/ enabled=yes gpgcheck=yes gpgkey=http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release'
+ 
+ansible all -m yum_repository -a 'name=appstream descansible all -a 'ls -l /etc/yum.repos.d/'ription="app description" baseurl=http://content.example.com/rhel9.0/x86_64/dvd/AppStream/ enabled=yes gpgcheck=yes gpgkey=http://content.example.com/rhel9.0/x86_64/dvd/RPM-GPG-KEY-redhat-release'
+
+chmod a+x adhoc.sh
+ansible all -a 'cat /etc/yum.repos.d/appstream.repo'
+ansible all -a 'cat /etc/yum.repos.d/baseos.repo'
+ansible all -a 'ls -l /etc/yum.repos.d/'
+
+
+
+
+
+
+
+
