@@ -1,0 +1,355 @@
+[student@workstation ~]$ cd playbook
+bash: cd: playbook: No such file or directory
+[student@workstation ~]$ ls
+Desktop    Downloads  Pictures   playbook.tar.gz  redhatTraining  Videos
+Documents  Music      playbooks  Public           Templates
+[student@workstation ~]$ history
+    1  ls /var/lib/gdm/
+    2  sudo -i
+    3  moutn
+    4  mount
+    5  cat /opt/app-root/src/jupyter_lab_config.py 
+    6  less /opt/app-root/src/jupyter_lab_config.py
+    7  cat /cloud-init/instance-data.json 
+    8  cat /cloud-init/instance-data.json |less
+    9  exit
+   10  cat /cloud-init/instance-data.json |less
+   11  cat /cloud-init/instance-data.json |less
+   12  exit
+   13  mount /dev/sr0 /mnt
+   14  sudo mount /dev/sr0 /mnt
+   15  cat /mnt/openstack/latest/meta_data.json 
+   16  sudo -i
+   17  ssh workstation; exit
+   18  ssh workstation; exit
+   19  cd playbooks
+   20  ls
+   21  cd playbooks
+   22  ls
+   23  cd ansible9.0
+   24  ls
+   25  ansible-doc ansible.builtin.get_url
+   26  pwd
+   27  vim .vimrc
+   28  mkdir playbooks
+   29  pwd
+   30  cd playbooks
+   31  pwd
+   32  vim inventory
+   33  vim ansible.cfg
+   34  mkdir roles
+   35  vim ansible.cfg
+   36  cd roles
+   37  ls
+   38  cd ..
+   39  ls
+   40  vim ansible.cfg
+   41  su - root
+   42  vim ansible-navigator.yml
+   43  ansible all -a 'i'
+   44  cat inventory
+   45  vim inventory
+   46  ansible all -a 'i'
+   47  ansible all -a 'id'
+   48  cat ansible.cfg
+   49  vim imventory
+   50  ls
+   51  cat inventory
+   52  vim inventory
+   53  rm imventory
+   54  ls
+   55  vim ansible.cfg
+   56  ansible all -a 'id'
+   57  vim ansible.cfg
+   58  ansible all -a 'id'
+   59  vim ansible.cfg
+   60  ll
+   61  cat inventory
+   62  vim inventory
+   63  ansible all -a 'id'
+   64  cat inventory
+   65  cat ansible.cfg
+   66  cat inventory
+   67  cat ansible-navigator.yml
+   68  vim adhoc.sh
+   69  chmod a+x adhoc.sh
+   70  ./adhoc.sh
+   71  ls
+   72  ./adhoc.sh
+   73  ls
+   74  cat adhoc.sh
+   75  vim adhoc.sh
+   76  ./adhoc.sh
+   77  vim adhoc.sh
+   78  ./adhoc.sh
+   79  ansible all -a 'cat /etc/yum_repos.d/baseos.repo'
+   80  ansible all -a 'cat /etc/yum.repos.d/baseos.repo'
+   81  ansible all -a 'cat /etc/yum.repos.d/appstream.repo'
+   82  ansible all -a 'ls -l /etc/yum.repos.d/'
+   83  vim adhoc.sh
+   84  ls
+   85  git --version
+   86  git clone https://github.com/cavernon70-gif/ansible9.0
+   87  ls
+   88  cd roles
+   89  vim requirements.yml
+   90  cd ..
+   91  ansible-galaxy role install -r roles/requirements.yml -p roles
+   92  ls
+   93  cd roles
+   94  vim requirements.yml 
+   95  cd ..
+   96  ansible-galaxy role install -r roles/requirements.yml -p roles
+   97  ansible-galaxy role list
+   98  cd roles
+   99  cat requirements.yml
+  100  ls
+  101  ansible-galaxy role init apache
+  102  ansible-galaxy role list
+  103  rm -rf linux*
+  104  rm -rf roles*
+  105  ansible-galaxy role list
+  106  ll
+  107  vim apache/tasks/main.yml 
+  108  vim apache/templates/index.j2
+  109  cd ../
+  110  vim apache_role.yml
+  111  ansible-navigator run apache_role.yml
+  112  vim ansible-navigator.yml 
+  113  ansible-navigator run apache_role.yml
+  114  podman images
+  115  vim ansible-navigator.yml 
+  116  ansible-navigator run apache_role.yml
+  117  vim ansible-navigator.yml 
+  118  ansible-navigator run apache_role.yml
+  119  vim roles/apache/tasks/main.yml 
+  120  ansible-navigator run apache_role.yml
+  121  vim roles/apache/tasks/main.yml 
+  122  ansible-navigator run apache_role.yml
+  123  vim roles/apache/tasks/main.yml 
+  124  cat roles/apache/templates/index.j2 
+  125  vim roles/apache/templates/index.j2 
+  126  ansible-navigator run apache_role.yml
+  127  vim roles/apache/tasks/main.yml 
+  128  ansible-navigator run apache_role.yml
+  129  vim roles/apache/tasks/main.yml 
+  130  ansible-navigator run apache_role.yml
+  131  vim roles/apache/templates/index.j2 
+  132  ansible-navigator run apache_role.yml
+  133  curl servera
+  134  vim roles/apache/tasks/main.yml 
+  135  curl servera
+  136  ansible-navigator run apache_role.yml
+  137  curl servera
+  138  cat roles/apache/tasks/main.yml 
+  139  cat roles/apache/templates/index.j2 
+  140  vim  apache_role.yml
+  141  cat apache_role.yml
+  142  vim roles.yml
+  143  ansible-navigator run roles.yml
+  144  curl serverd
+  145  curl serverb
+  146  cat roles.xml
+  147  cat roles.yml
+  148  curl serverb/php
+  149  curl serverb/index.php
+  150  su - root
+  151  ls /etc/ansible/roles
+  152  ls -l /usr/share/ansbile/roles
+  153  ls -l /usr/ansible/share/roles
+  154  ls -l /usr/share/ansible/roles
+  155  cp -rv /usr/share/ansible/roles/rhel-system-roles.timesync roles
+  156  cp -rv /usr/share/ansible/roles/rhel-system-roles.timesync roles/
+  157  ansible-galaxy role list
+  158  vim timesync.yml
+  159  ansible-navigator run timesync.yml
+  160  cat timesync.yml
+  161  tree roles
+  162  vim packages.yml
+  163  ansible-navigator run packages.yml
+  164  vim packages.yml
+  165  vim webcontent.yml
+  166  ansible-navigator run webcontent.yml
+  167  vim webcontent.yml
+  168  ansible-navigator run webcontent.yml
+  169  vim webcontent.yml
+  170  ansible-navigator run webcontent.yml
+  171  vim webcontent.yml
+  172  ansible-navigator run webcontent.yml
+  173  vim webcontent.yml
+  174  ansible-navigator run webcontent.yml
+  175  vim webcontent.yml
+  176  curl serverb/webdev/
+  177  curl servera/webdev/
+  178  curl dev/webdev/
+  179  curl servera/webdev/
+  180  vim webcontent.yml
+  181  curl servera/webdev
+  182  cat webcontent.yml
+  183  vim hwreport.yml
+  184  ansible-navigator run hwreport.yml 
+  185  vim hwreport.yml
+  186  ansible-navigator run hwreport.yml 
+  187  vim hwreport.yml
+  188  ansible-navigator run hwreport.yml 
+  189  vim hwreport.yml
+  190  ansible-navigator run hwreport.yml 
+  191  vim hwreport.yml
+  192  ansible-navigator run hwreport.yml 
+  193  ansible dev -m setup| grep ansible_mem
+  194  vim hwreport.yml
+  195  ansible dev -m setup| grep ansible_mem
+  196  ansible-navigator run hwreport.yml 
+  197  ansible dev -m setup| grep ansible_cpu
+  198  ansible dev -m setup| grep cpu
+  199  vim hwreport.yml
+  200  ansible dev -m setup| grep cpu
+  201  ansible-navigator run hwreport.yml 
+  202  vim hwreport.yml
+  203  ansible-navigator run hwreport.yml 
+  204  ansible all -a 'cat /root/hwreport.txt'
+  205  vim hwreport.yml
+  206  ansible all -a 'cat /root/hwreport.txt'
+  207  ansible-navigator run hwreport.yml 
+  208  ansible all -a 'cat /root/hwreport.txt'
+  209  cat hwreport.yml 
+  210  vim hwreport.yml
+  211  ansible-navigator run hwreport.yml 
+  212  ansible all -a 'cat /root/hwreport.txt'
+  213  vim hwreport.yml
+  214  ansible-navigator run hwreport.yml 
+  215  vim hwreport.yml
+  216  ansible-navigator run hwreport.yml 
+  217  ansible all -a 'cat /root/hwreport.txt'
+  218  cat hwreport.yml
+  219  cat webcontent.yml
+  220  vim issue.yml
+  221  ansible-navigator run issue.yml
+  222  vim issue.yml
+  223  ansible-navigator run issue.yml
+  224  vim issue.yml
+  225  ansible-navigator run issue.yml
+  226  ansible all -a 'cat /etc/issue'
+  227  cat issue.yml
+  228  vim myhosts.j2
+  229  vim hosts.yml
+  230  ansible-navigator run myhosts.j2 
+  231  ansible-navigator run hosts.yml
+  232  vim myhosts.j2
+  233  vim hosts.yml
+  234  ansible-navigator run hosts.yml
+  235  ansible dev -a 'cat /etc/hosts'
+  236  vim hosts.yml
+  237  cat hosts.j2
+  238  cat myhosts.j2
+  239  vim myhosts.j2
+  240  cat myhosts.j2
+  241  vim hosts.yml
+  242  cat hosts.yml
+  243  vim vault.yml
+  244  vim secret.txt
+  245  ansible-vault encrypt vault.yml --vault-password-file=secret.txt
+  246  ansible-vault view  vault.yml --vault-password-file=secret.txt
+  247  cat vault.yml
+  248  ansible-vault view  vault.yml --vault-password-file=secret.txt
+  249  vim secret.txt
+  250  wget http://content.example.com/rhel9.0/x86_64/dvd/media.repo
+  251  ls
+  252  vim user_list.yml
+  253  vim users.yml
+  254  ansible-navigator run users.yml
+  255  vim users.yml
+  256  ansible-navigator run users.yml --vault-password-file secret.txt
+  257  vim users.yml
+  258  ansible-navigator run users.yml --vault-password-file secret.txt
+  259  vim users.yml
+  260  ansible-navigator run users.yml --vault-password-file secret.txt
+  261  ll
+  262  cat users.yml
+  263  wq
+  264  vim users.yml
+  265  ansible-navigator run users.yml --vault-password-file secret.txt
+  266  wq
+  267  vim users.yml
+  268  ansible-navigator run users.yml --vault-password-file secret.txt
+  269  vim users.yml
+  270  ansible-navigator run users.yml --vault-password-file secret.txt
+  271  ansible dev -a 'tail /etc/passwd'
+  272  ansible dev -a 'tail /etc/group'
+  273  ansible dev -a 'tail /etc/shadow'
+  274  vim users.yml
+  275  ansible-navigator run users.yml --vault-password-file secret.txt
+  276  ansible dev -a 'tail /etc/passwd'
+  277  ansible dev -a 'tail /etc/shadow'
+  278  vim users.yml
+  279  ansible-navigator run users.yml --vault-password-file secret.txt
+  280  ansible dev -a 'tail /etc/shadow'
+  281  vim users.yml
+  282  ansible balancer -a 'tail /etc/shadow'
+  283  ansible balancers -a 'tail /etc/shadow'
+  284  cat users.yml
+  285  cat user_list.yml
+  286  vim solaris.yml
+  287  ansible-vault encrypt solaris.yml
+  288  ansible-vault rekey solaris.yml
+  289  ssh root@servera
+  290  ssh root@serverb
+  291  vim lvm.yml
+  292  ansible-navigator run lvm.yml
+  293  ansible-navigator run lvm.yml
+  294  ansible all -a 'lsvlk'
+  295  ansible all -a 'lsblk'
+  296  ansible all -a 'vgs'
+  297  vim lvm.yml
+  298  ansible-navigator run lvm.yml
+  299  ansible all -a 'lvs'
+  300  vim lvm.yml
+  301  ansible-navigator run lvm.yml
+  302  ansible all vlkid
+  303  ansible all -a 'blkid'
+  304  ansible all -m user -a 'name=natasha state=present'
+  305  vim cron.yml
+  306  ansible-navigator run cron.yml 
+  307  vim cron.yml
+  308  ansible-navigator run cron.yml 
+  309  vim cron.yml
+  310  ansible-navigator run cron.yml 
+  311  vim cron.yml
+  312  ansible-navigator run cron.yml 
+  313  ansible all -a 'crontab -lu natasha'
+  314  ssh servera
+  315  cd ..
+  316  ls
+  317  tar -zcvf playbook.tar.gz playbooks/
+  318  ls
+  319  git clone git@github.com:Gowrisundar/redhatTraining.git
+  320  git clone https://github.com/Gowrisundar/redhatTraining.git
+  321  ls
+  322  cp playbook.tar.gz redhatTraining/
+  323  cd redhatTraining/
+  324  ls
+  325  git status
+  326  git add playbook.tar.gz 
+  327  git status
+  328  git commit -m "added playbook files"
+  329  git push
+  330  git push origin master
+  331  git push origin main
+  332  cd ..
+  333  ls
+  334  rm -rf redhatTraining/
+  335  git clone https://github.com/Gowrisundar/redhatTraining.git
+  336  cp playbook.tar.gz redhatTraining/
+  337  cd redhatTraining/
+  338  git status
+  339  git add files
+  340  git add *
+  341  git status
+  342  git commit -m "add files"
+  343  git push
+  344  cd playbook
+  345  ls
+  346  history
+[student@workstation ~]$ 
+1:wq
+
